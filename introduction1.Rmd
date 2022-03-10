@@ -1,9 +1,18 @@
 ---
-title: "R入門 1"
-author: "Reio Tanji"
-date: "2022/3/1"
+title: "An Introduction to R"
+author:
+  - "Reio Tanji"
+  - "Osaka Univ., Graduate School of Econ."
+date: "April, 2022"
 output: 
-  revealjs::revealjs_presentation: default
+  revealjs::revealjs_presentation:
+    self_contained: FALSE
+    theme: serif
+    css: introduction.css
+    reveal_plugins: ["menu"]
+    reveal_options:
+      menu:
+        numbers: TRUE
   html_document: default
 ---
 
@@ -13,4 +22,42 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # R言語を使う
 
--   **R言語とは？**
+**R言語とは？**
+
+- "*R is a free software environment for statistical computing and graphics*" (from [The R Project for Statistical Computing](https://www.r-project.org/))
+  - 統計計算、グラフ作成を行うことができる無料のツール
+  - データの収集、管理、分析から結果の出力・プレゼンテーションの作成までを一つの言語で行うことも出来る
+  - この資料もRを使って作成(R Markdown)
+- 目標
+  - 今回は、Rの基本的な操作方法を学習した上で、論文執筆の上で最低限必要なアウトプットのための技術習得をめざす
+  
+## Rでできること
+
+## 基本構造
+
+基本的には、というか全ての命令は
+
+- Rに命令を投げる→命令に従って計算(描画・読み込みなど)を行う
+- 必要であればアウトプットを返す
+
+の繰り返し
+
+- エレベータの3階ボタンを押す→3階に向かう、ドアを開ける
+
+# Setup
+
+インストール
+
+- **R言語**と**R Studio**の2つをインストール
+  - R言語をスムーズに利用するためのツール：開発環境がRStudio
+- 
+
+# 基本操作
+
+# データの利用
+
+# データの可視化
+
+# 分析と結果の表示
+
+# RMarkdownを用いたレポートの作成 
