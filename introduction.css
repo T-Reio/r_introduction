@@ -1,8 +1,15 @@
 .reveal div {
   font-size: 80%;
+  text-align: left;
 }
 
+.reveal h1 {
+  font-size: 120%;
+  font-weight: bold;
+  text-align: center;
+}
 
-.reveal p {
-  text-align: left;
+.reveal h1 {
+  font-size: 120%;
+  text-align: center;
 }

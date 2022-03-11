@@ -465,13 +465,13 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <h1>R言語を使う</h1>
 <p><strong>R言語とは？</strong></p>
 <ul>
-<li>“<em>R is a free software environment for statistical computing and graphics</em>” (from <a href="https://www.r-project.org/">The R Project for Statistical Computing</a>)
+<li><p>“<em>R is a free software environment for statistical computing and graphics</em>” (from <a href="https://www.r-project.org/">The R Project for Statistical Computing</a>)</p>
 <ul>
 <li>統計計算、グラフ作成を行うことができる無料のツール</li>
 <li>データの収集、管理、分析から結果の出力・プレゼンテーションの作成までを一つの言語で行うことも出来る</li>
 <li>この資料もRを使って作成(R Markdown)</li>
 </ul></li>
-<li>目標
+<li><p>目標</p>
 <ul>
 <li>今回は、Rの基本的な操作方法を学習した上で、論文執筆の上で最低限必要なアウトプットのための技術習得をめざす</li>
 </ul></li>
@@ -479,26 +479,61 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section>
 <section id="rでできること" class="slide level2">
 <h2>Rでできること</h2>
+<ul>
+<li><p>データの操作：<code>tidyverse</code></p>
+<ul>
+<li>データの取得：デフォルトのデータセット、csvファイル等の読み込み</li>
+<li>データの整理：必要な情報の抽出、データの変形、新たな変数の作成と保存</li>
+</ul></li>
+<li><p>データの可視化</p>
+<ul>
+<li>変数間の関係を視覚的に描写：<code>graphics</code>, <code>ggplot2</code></li>
+</ul></li>
+<li><p>データ分析</p>
+<ul>
+<li>基本統計量の作成</li>
+<li>計量経済学・統計学で用いられる様々な手法の実装</li>
+<li>結果の出力</li>
+</ul></li>
+<li><p>レポートの作成</p>
+<ul>
+<li><p>分析結果をスライドにして報告 <code>RMarkdown</code></p>
+<ul>
+<li>Word, Powerpoint形式でファイルを出力</li>
+</ul></li>
+<li><p>出力の保存や体裁を整える手間が削減できる</p></li>
+</ul></li>
+</ul>
 </section>
 <section id="基本構造" class="slide level2">
 <h2>基本構造</h2>
-<p>基本的には、というか全ての命令は</p>
 <ul>
-<li>Rに命令を投げる→命令に従って計算(描画・読み込みなど)を行う</li>
-<li>必要であればアウトプットを返す</li>
+<li><p>基本的には、というか全ての命令は</p>
+<ul>
+<li><p>Rに命令を投げる→命令に従って計算(描画・読み込みなど)を行う</p></li>
+<li><p>必要であればアウトプットを返す</p></li>
 </ul>
-<p>の繰り返し</p>
+<p>の繰り返し</p></li>
+</ul>
+<!-- -->
 <ul>
-<li>エレベータの3階ボタンを押す→3階に向かう、ドアを開ける</li>
+<li><p>エレベーターの3階ボタンを押す→3階に向かう、ドアを開ける</p>
+<ul>
+<li>ボタンを押すエネルギーでエレベータが動いているわけではない</li>
+<li>ワイヤーをどれだけ巻き取ればどれだけ上昇・下降するのか、ドアを開けるためにどの部分にどれだけ力を加えればいいのか、が3回ボタンを押したときに発せられる命令として書かれている</li>
+</ul></li>
+<li><p>この命令を一つ一つ書く作業を行う</p></li>
 </ul>
 </section></section>
 <section id="setup" class="title-slide slide level1">
 <h1>Setup</h1>
-<p>インストール</p>
 <ul>
-<li><strong>R言語</strong>と<strong>R Studio</strong>の2つをインストール
+<li><p>インストール</p>
+<ul>
+<li><p><strong>R言語</strong>と<strong>R Studio</strong>の2つをインストール</p>
 <ul>
 <li>R言語をスムーズに利用するためのツール：開発環境がRStudio</li>
+</ul></li>
 </ul></li>
 <li></li>
 </ul>
@@ -509,8 +544,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 
 </section>
 
-<section id="データの利用" class="title-slide slide level1">
-<h1>データの利用</h1>
+<section id="データの操作" class="title-slide slide level1">
+<h1>データの操作</h1>
 
 </section>
 
@@ -539,14 +574,52 @@ document.getElementsByTagName('head')[0].appendChild(style);
       // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: false,
         // Push each slide change to the browser history
         history: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
         // Vertical centering of slides
         center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Loop the presentation
+        loop: false,
+        // Change the presentation direction to be RTL
+        rtl: false,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
         // Transition style
         transition: 'default', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
         // Transition style for full page slide backgrounds
         backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
 
         menu: {
    
