@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **R言語とは？**
 
-- "*R is a free software environment for statistical computing and graphics*" (from [The R Project for Statistical Computing](https://www.r-project.org/))
+- "*R is a free software environment for statistical computing and graphics*"<br>(from [The R Project for Statistical Computing](https://www.r-project.org/))
 
     - 統計計算、グラフ作成を行うことができる無料のツール
     - データの収集、管理、分析から結果の出力・プレゼンテーションの作成までを一つの言語で行うことも出来る
@@ -53,7 +53,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - レポートの作成
 
-    - 分析結果をスライドにして報告 `RMarkdown`
+    - 分析結果をスライドにして報告 RMarkdown
 
         - Word, Powerpoint形式でファイルを出力
 
@@ -108,15 +108,53 @@ Click: [Download R](https://cran.ism.ac.jp/)
 knitr::include_graphics("figs/rstudio_appearance.png")
 ```
 
+# プロジェクトの作成、バージョン管理
+
 # 基本操作
+- "r_introduction"というプロジェクトを作成、事前に配布したファイルの中身をその中に展開
 
 - R Studioを開く
-- 単純計算もできる
+  - R Consoleにコードを直接入力してEnter、もしくはRスクリプトにコードを記述してCtrl + Enterで実行
+  - RスクリプトはCtrl+Shift+Nで作成可能
 
 ```{r K3}
 1 + 2 * (3 / 4) # 掛け算は*で
 13 %% 5 # 剰余
 ```
+
+  - その他、基本的な演算記号は[R-Tips](http://cse.naro.affrc.go.jp/takezawa/r-tips/r.html)などを参照せよ
+
+## 関数
+
+## 変数の型
+
+- 数値だけでなく、文字も扱うことができる
+  - 何を使っても良いわけではない：Excelも一緒
+    - 電話番号を入力したのに頭の0が消える→Excelが電話番号を数値として認識してしまっているから
+  - 文字列を""で囲って表記するすることで、それが文字列であることをRに伝えることができる
+```{r class}
+class(3.14) # class()はその変数の型を返す関数
+class('1.90') # 文字列 character と判定される
+```
+  - numeric, integerは足し引きできるが、characterはできない
+  - 順序付きの文字列: factor
+```{r character, eval=FALSE}
+"1" + "2"
+```
+
+## オブジェクト
+
+- では""で囲わずに入力した文字列はどう認識されるのか？
+  1. 特定の値と結びついている
+  
+## ベクトル
+
+- ベクトル：複数の要素を含む列
+  - `c(a, b, c, ...)`
+
+## データフレーム
+
+## リスト
 
 # データの操作
 

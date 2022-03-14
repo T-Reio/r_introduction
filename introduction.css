@@ -13,3 +13,8 @@
   font-size: 80%;
   text-align: left;
 }
+
+.reveal a {
+color:#00008b;
+text-decoration:underline;
+}

@@ -530,7 +530,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <h1>R言語を使う</h1>
 <p><strong>R言語とは？</strong></p>
 <ul>
-<li><p>“<em>R is a free software environment for statistical computing and graphics</em>” (from <a href="https://www.r-project.org/">The R Project for Statistical Computing</a>)</p>
+<li><p>“<em>R is a free software environment for statistical computing and graphics</em>”<br>(from <a href="https://www.r-project.org/">The R Project for Statistical Computing</a>)</p>
 <ul>
 <li>統計計算、グラフ作成を行うことができる無料のツール</li>
 <li>データの収集、管理、分析から結果の出力・プレゼンテーションの作成までを一つの言語で行うことも出来る</li>
@@ -562,7 +562,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </ul></li>
 <li><p>レポートの作成</p>
 <ul>
-<li><p>分析結果をスライドにして報告 <code>RMarkdown</code></p>
+<li><p>分析結果をスライドにして報告 RMarkdown</p>
 <ul>
 <li>Word, Powerpoint形式でファイルを出力</li>
 </ul></li>
@@ -631,18 +631,79 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </ul>
 <p><img src="figs/rstudio_appearance.png" width="77%" style="display: block; margin: auto;" /></p>
 </section></section>
+<section id="プロジェクトの作成バージョン管理" class="title-slide slide level1">
+<h1>プロジェクトの作成、バージョン管理</h1>
+
+</section>
+
+<section>
 <section id="基本操作" class="title-slide slide level1">
 <h1>基本操作</h1>
 <ul>
-<li>R Studioを開く</li>
-<li>単純計算もできる</li>
+<li><p>“r_introduction”というプロジェクトを作成、事前に配布したファイルの中身をその中に展開</p></li>
+<li><p>R Studioを開く</p>
+<ul>
+<li>R Consoleにコードを直接入力してEnter、もしくはRスクリプトにコードを記述してCtrl + Enterで実行</li>
+<li>RスクリプトはCtrl+Shift+Nで作成可能</li>
+</ul></li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="dv">4</span>) <span class="co"># 掛け算は*で</span></span></code></pre></div>
 <pre><code>## [1] 2.5</code></pre>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">13</span> <span class="sc">%%</span> <span class="dv">5</span> <span class="co"># 剰余</span></span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
+<ul>
+<li>その他、基本的な演算記号は<a href="http://cse.naro.affrc.go.jp/takezawa/r-tips/r.html">R-Tips</a>などを参照せよ</li>
+</ul>
 </section>
-
+<section id="関数" class="slide level2">
+<h2>関数</h2>
+</section>
+<section id="変数の型" class="slide level2">
+<h2>変数の型</h2>
+<ul>
+<li>数値だけでなく、文字も扱うことができる
+<ul>
+<li>何を使っても良いわけではない：Excelも一緒
+<ul>
+<li>電話番号を入力したのに頭の0が消える→Excelが電話番号を数値として認識してしまっているから</li>
+</ul></li>
+<li>文字列を”“で囲って表記するすることで、それが文字列であることをRに伝えることができる</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fl">3.14</span>) <span class="co"># class()はその変数の型を返す関数</span></span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="st">&#39;1.90&#39;</span>) <span class="co"># 文字列 character と判定される</span></span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<ul>
+<li>numeric, integerは足し引きできるが、characterはできない</li>
+<li>順序付きの文字列: factor</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;1&quot;</span> <span class="sc">+</span> <span class="st">&quot;2&quot;</span></span></code></pre></div>
+</section>
+<section id="オブジェクト" class="slide level2">
+<h2>オブジェクト</h2>
+<ul>
+<li>では”“で囲わずに入力した文字列はどう認識されるのか？
+<ol type="1">
+<li>特定の値と結びついている</li>
+</ol></li>
+</ul>
+</section>
+<section id="ベクトル" class="slide level2">
+<h2>ベクトル</h2>
+<ul>
+<li>ベクトル：複数の要素を含む列
+<ul>
+<li><code>c(a, b, c, ...)</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="データフレーム" class="slide level2">
+<h2>データフレーム</h2>
+</section>
+<section id="リスト" class="slide level2">
+<h2>リスト</h2>
+</section></section>
 <section id="データの操作" class="title-slide slide level1">
 <h1>データの操作</h1>
 
@@ -682,14 +743,52 @@ document.getElementsByTagName('head')[0].appendChild(style);
       // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: false,
         // Push each slide change to the browser history
         history: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
         // Vertical centering of slides
         center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Loop the presentation
+        loop: false,
+        // Change the presentation direction to be RTL
+        rtl: false,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
         // Transition style
         transition: 'default', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
         // Transition style for full page slide backgrounds
         backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
 
         menu: {
    
