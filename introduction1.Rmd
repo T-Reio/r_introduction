@@ -84,6 +84,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - 立命館大：森先生のサイトが大変勉強になります
   - [卒業論文のためのR入門](https://tomoecon.github.io/R_for_graduate_thesis/)
+- その他、分からないことはgoogleする力を付けましょう
+  - "r (関数名)"とかで大体載ってます
+  - GitHubなどで自身の作成したライブラリや関数の使い方などを解説しているものも多数存在
+- [R Tips](http://cse.naro.affrc.go.jp/takezawa/r-tips/r.html)
+- [RjpWiki](http://www.okadajp.org/RWiki/)
 
 # Setup
 
@@ -310,7 +315,9 @@ print(listA[[1]]) # リストの中の一部の要素のみ利用する場合は
 
 - あんまり便利さが伝わらなさそうなので分析パートで後述
 
-# データの操作、要約と可視化
+# データの操作
+
+- デフォルト/特定のパッケージに含まれる
 
 ## データの取得
 
@@ -356,11 +363,26 @@ DT::datatable(
 head(penguins_raw, 5)
 ```
 
+# データの概観：要約と可視化
 
+- 
 
 # 分析と結果の表示
 
+- 分析目的の設定
+- 最小二乗法
+- 最尤法
+  - ロジスティック回帰
+- 操作変数法
+
 # RMarkdownを用いたレポートの作成
+
+- Markdown形式のドキュメント
+- コードブロックの作成
+- htmlドキュメントの作成
+- Powerpointファイルへの変換
+- Wordファイルへの変換
+- R Markdownを併用して論文作成・スライド作成の手間を省く
 
 # おまけ：バージョン管理
 
