@@ -17,14 +17,18 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+library(tidyverse)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # R言語を使う
 
-**R言語とは？**
+- R言語とは？
+- Rでできること
 
-- "*R is a free software environment for statistical computing and graphics*" (from [The R Project for Statistical Computing](https://www.r-project.org/))
+## R言語とは？
+
+- "*R is a free software environment for statistical computing and graphics*"<br>(from [The R Project for Statistical Computing](https://www.r-project.org/))
 
     - 統計計算、グラフ作成を行うことができる無料のツール
     - データの収集、管理、分析から結果の出力・プレゼンテーションの作成までを一つの言語で行うことも出来る
@@ -53,7 +57,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - レポートの作成
 
-    - 分析結果をスライドにして報告 `RMarkdown`
+    - 分析結果をスライドにして報告 RMarkdown
 
         - Word, Powerpoint形式でファイルを出力
 
@@ -76,7 +80,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - この命令を一つ一つ書く作業を行う
 
+## 参考
+
+- 立命館大：森先生のサイトが大変勉強になります
+  - [卒業論文のためのR入門](https://tomoecon.github.io/R_for_graduate_thesis/)
+- その他、分からないことはgoogleする力を付けましょう
+  - "r (関数名)"とかで大体載ってます
+  - GitHubなどで自身の作成したライブラリや関数の使い方などを解説しているものも多数存在
+- [R Tips](http://cse.naro.affrc.go.jp/takezawa/r-tips/r.html)
+- [RjpWiki](http://www.okadajp.org/RWiki/)
+
 # Setup
+
+## Rでの作業に必要なもの
 
 - **R言語**と**R Studio**の2つをインストール
   - R言語をスムーズに利用するためのツール：開発環境がRStudio
@@ -97,6 +113,11 @@ knitr::opts_chunk$set(echo = TRUE)
 - それぞれ必ず最新バージョンをダウンロードすること
   - 定期的にアップデートしておくのがおすすめ、たまに関数の仕様とかが大幅に変わる
   - たぶんいないと思いますが、Ver.4.0.0以前のものを使用している4回生はインストールし直して下さい
+- Cドライブに日本語フォントが含まれている人
+  - C:/Users/.../...のところ
+  - ファイルの保存などする際に非常に面倒なことになります
+  - 特に動作で問題が出なければいいですが、コードの実行中に止まるなどあれば相談して下さい
+  - 今から買う人は絶対に日本語フォントを入れないようにしましょう、一生
 
 ## R Studioの基本画面
 
@@ -109,10 +130,64 @@ knitr::opts_chunk$set(echo = TRUE)
 knitr::include_graphics("figs/rstudio_appearance.png")
 ```
 
+# プロジェクトの作成、バージョン管理
+
+- ディレクトリとは
+- ディレクトリの構造
+- フォルダの共有方法
+- R Studioでプロジェクトを作成する方法
+
+## ディレクトリ
+
+- ファイルやフォルダを参照する際に示すPC内の**住所**
+  - C:/...がそれ
+  - 全てが同じ階層に入っているのは作業こそ楽だが、自分で参照するときに探すのが面倒
+    - ゼミ論文に使うdata.csvというファイルを保存→他の講義で同じ名前のファイルを受け取る→後から見たらどれがどれだか分からなくなる
+- 整理の方法: 作業やファイルの種類ごとにフォルダを作り、異なる系統のファイルを識別
+  - 何をする作業のフォルダなのか？
+  - データの種類：整理する前の生データなのか、そのまま分析に使えるデータなのか？
+  - アウトプット: 分析結果、図表
+- R Studioでは、特定のフォルダを「プロジェクト」として扱い、「誰のPCでも動くコード」を作ることができる
+
+## ディレクトリの構造
+
+```{r, out.width="77%", echo=FALSE, fig.align='center'}
+knitr::include_graphics("figs/folder.jpg")
+```
+
+- 使いやすいフォルダの作成
+  - 各自のPCで"r_intro"フォルダを作り、必要なファイルをしまっておけば、誰が書いたコードでも個々人がPCで再現できる環境に
+  - フォルダ名は\\(バックスラッシュ, ￥)を/ (スラッシュ)に変えて記述
+  
+## フォルダの共有方法
+
+- フォルダの共有：データや書いたスクリプトを共有する
+  - 何度も修正を加えたり、作った図表を共有するのはめんどい
+  - 結果、分析をした人がスライドも全部作る…になりがち
+- フォルダをメンバー間で同期する(共有する)ツールをマスターすると、グループでの作業が楽になる
+  - [Dropbox](https://www.dropbox.com/)
+  - [GitHub](https://github.com/)
+  
+  特にGitHubはRStudioと直接連携して簡単にクラウド共有・共有したデータのダウンロードも可能なので非常に便利：データをオープンで保有することになるので、扱うデータの種類によっては注意が必要
+  
+- Google Driveを使う方法もあり
+  - Google Document, Spreadsheet, Slides を使った論文共同執筆はべんり
+  - OfficeのWord, Excel, Powerpointに比べると機能がかなり制限される弱点
+  - 特にスライド作成に関しては不便なポイントが多いかも
+
+## プロジェクトの作り方
+
+
+
 # 基本操作
 
+## スクリプトの作成、演算子
+
+- "r_introduction"というプロジェクトを作成、事前に配布したファイルの中身をその中に展開
+
 - R Studioを開く
-- 単純計算もできる
+  - R Consoleにコードを直接入力してEnter、もしくはRスクリプトにコードを記述してCtrl + Enterで実行
+  - RスクリプトはCtrl+Shift+Nで作成可能
 
 ```{r K3}
 1 + 2 * (3 / 4) # 掛け算は*で
@@ -122,13 +197,196 @@ knitr::include_graphics("figs/rstudio_appearance.png")
 
 - 
 
+  - その他、基本的な演算記号は[R-Tips](http://cse.naro.affrc.go.jp/takezawa/r-tips/r.html)などを参照せよ
+
+## 関数
+
+- Rで行う典型的な操作・計算を行う命令
+- 操作を実行する対象となる値や、実行にあたって選択可能な様々なオプションを(関数名)(引数1 = ., 引数2 = ., ...)の形で記述
+```{r}
+log(x = 100, base = 10) # 100の対数、底10で計算
+log(x = 100, base = 5) # 底を5に変更
+```
+- デフォルトで搭載されている関数の他に、便利な関数をまとめて利用可能にする「パッケージ」をインストール・活用することもできる
+```{r, eval=FALSE}
+install.packages("tidyverse") # tidyverse パッケージをインストール
+library(tidyverse) # tidyverse パッケージを有効化：起動したときに毎回実行する
+```
+
+## 関数 (cont'd)
+- 引数の名前は関数ごとに決まっており、必要なオプションに対して情報を指定する
+- 引数を指定しなければエラーが出るものと、指定しない場合のオプションを自動で選んでくれるものとが存在
+```{r, out.width="47%"}
+# y = x^2 のグラフの描画、定義域は-5から5
+# pchはプロットの形を指定、colはプロットの色
+plot(x = -5:5, y = (-5:5)^2, pch = 19, col = "magenta") 
+```
+
+## 変数の型
+
+- 数値だけでなく、文字も扱うことができる
+  - 何を使っても良いわけではない：Excelも一緒
+    - 電話番号を入力したのに頭の0が消える→Excelが電話番号を数値として認識してしまっているから
+  - 文字列を""で囲って表記することで、それが文字列であることをRに伝えることができる
+```{r class}
+class(3.14) # class()はその変数の型を返す関数
+class('1.90') # 文字列 character と判定される
+```
+  - numeric, integerは足し引きできるが、characterはできない
+  - 順序付きの文字列: factor
+```{r character, eval=FALSE}
+"1" + "2"
+```
+
+## オブジェクト
+
+- では""で囲わずに入力した文字列はどう認識されるのか？
+  1. 特定の値と結びついている
+    - `pi`: 円周率
+  2. 自信が定義した任意の値が格納されている
+    - オブジェクト: 数値やベクトル、データフレームやリストを格納、R Studioでは右上のEnvironmentタブに定義が表示される
+    - 回帰分析などの計算結果を格納することも可能
+    - `<-` を使って適当な値を定義する
+```{r}
+pi
+value <- 8 # valueという文字列に8を代入
+value + 10 # 今valueの値は8なので、8 + 10を計算した結果を返してくれる
+```
+    
+  
+## ベクトル
+
+- ベクトル：複数の要素を含む列
+  - `c(a, b, c, ...)`で定義される
+  - 文字列など、他の数値型を利用してもOK
+```{r}
+vec <- c(1192, 2960)
+vec * 2
+```
+
+- 関数などを用いて規則性のあるベクトルを簡単に定義することもできる
+  - `seq(a, b, c)`: aからbまで、公差cの等差数列
+    - 公差が1の場合は、`a:b`でも代替可能
+  - `rep(a, b)`: aをb回繰り返す数列
+```{r}
+seq(1, 10, 2)
+```
+
+## データフレーム
+
+- 各行に観測単位(個人、グループ、都道府県など)、各列に特定の情報を含んだデータ形式
+  - 実際にデータ分析を行う際は、csvファイルなどをこの形式で読み込むことでRで扱えるようにする
+- 100人の性別、学年、学部が分かるデータフレーム：100行×3列のデータフレームになる
+
+- データフレームは`data.frame`関数、もしくはtibbleパッケージの`tibble`関数で定義する
+
+```{r, eval=FALSE}
+library(tidyverse) # パッケージを起動
+```
+
+
+```{r}
+df <- tibble::tibble( # dfという文字列にデータフレームを定義
+  faculty = c("econ", "law", "foreign", "lit"),
+  grade = c(4, 2, 1, 1),
+  toeic = c(300, 820, NA, 785) # NA: 該当する値が存在しないことを表す＝無回答など
+)
+```
+
+## データフレーム (cont'd)
+
+```{r}
+print(df)
+```
+
+
+## リスト
+
+- 値、ベクトル、データフレームなど、何を入れてもいい箱
+- `list(要素1, 要素2, ...)`で定義
+- 複数のデータフレームに対して同じ操作をしたい場合などに便利
+
+```{r}
+listA <- list(data.frame(a = 1:5, b = 11:15, c = 100:104), df)
+print(listA)
+```
+
+## リスト (cont'd)
+
+```{r}
+print(listA[[1]]) # リストの中の一部の要素のみ利用する場合は、[[]]で指定する
+```
+
+- あんまり便利さが伝わらなさそうなので分析パートで後述
+
 # データの操作
 
-# データの可視化
+- デフォルト/特定のパッケージに含まれる
+
+## データの取得
+
+- 分析方法が決まったらデータを取得
+- ここではRで簡単に利用できるサンプルデータを取得して分析・可視化を行う
+- palmerpenguinsパッケージをインストール、penguins_rawデータを使ってみる
+
+```{r, eval=FALSE}
+install.packages("palmerpenguins")
+```
+
+- パッケージを読み込むとデータセットが利用できるようになる
+
+```{r, eval=FALSE}
+library(palmerpenguins)
+palmerpenguins::penguins_raw
+```
+
+## データを確認
+```{r, echo=FALSE, warning=FALSE, out.width="80%"}
+library(palmerpenguins)
+DT::datatable(
+  palmerpenguins::penguins_raw,
+  filter = "top",
+  options = list(
+    pageLength = 3,
+    scrollX = T,
+    scrollY = T
+  )
+)
+```
+
+## Penguins データの概要
+
+- ペンギンをとっ捕まえて大きさや重さを計測したデータ
+- 元論文：[Kristen B. Gorman ,Tony D. Williams, and William R. Fraser (2014)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081)
+- 論文引用のフォーマット
+  - Gorman KB, Williams TD, Fraser WR (2014) Ecological Sexual Dimorphism and Environmental Variability within a Community of Antarctic Penguins (Genus Pygoscelis). PLoS ONE 9(3): e90081. [https://doi.org/10.1371/journal.pone.0090081]
+  - "Cite" みたいなボタンを押すと簡単にフォーマットをコピーできることが多いです
+- head(データフレーム, 行数)でデータの行頭を表示させることができる
+
+```{r}
+head(penguins_raw, 5)
+```
+
+# データの概観：要約と可視化
+
+- 
 
 # 分析と結果の表示
 
+- 分析目的の設定
+- 最小二乗法
+- 最尤法
+  - ロジスティック回帰
+- 操作変数法
+
 # RMarkdownを用いたレポートの作成
+
+- Markdown形式のドキュメント
+- コードブロックの作成
+- htmlドキュメントの作成
+- Powerpointファイルへの変換
+- Wordファイルへの変換
+- R Markdownを併用して論文作成・スライド作成の手間を省く
 
 # おまけ：バージョン管理
 

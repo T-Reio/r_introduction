@@ -25,4 +25,8 @@
 
 .reveal code {
   font-size: 120%;
+
+.reveal a {
+color:#00008b;
+text-decoration:underline;
 }
