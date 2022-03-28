@@ -159,6 +159,18 @@ knitr::include_graphics("figs/folder.jpg")
   - 各自のPCで"r_intro"フォルダを作り、必要なファイルをしまっておけば、誰が書いたコードでも個々人がPCで再現できる環境に
   - フォルダ名は\\(バックスラッシュ, ￥)を/ (スラッシュ)に変えて記述
   
+## フォルダ
+
+```{r, out.width="95%", echo=FALSE, fig.align='center'}
+knitr::include_graphics("figs/directory_system.png")
+```
+
+## フォルダ (cont'd)
+
+```{r, out.width="95%", echo=FALSE, fig.align='center'}
+knitr::include_graphics("figs/directory_system2.png")
+```
+  
 ## フォルダの共有方法
 
 - フォルダの共有：データや書いたスクリプトを共有する
