@@ -1,5 +1,5 @@
 .reveal div {
-  font-size: 90%;
+  font-size: 100%;
   text-align: left;
 }
 
@@ -9,7 +9,20 @@
   text-align: center;
 }
 
-.reveal li {
-  font-size: 80%;
+.reveal p {
+  font-size: 90%;
   text-align: left;
+}
+
+.reveal li {
+  font-size: 90%;
+  text-align: left;
+}
+
+.reveal span {
+  font-size: 110%;
+}
+
+.reveal code {
+  font-size: 120%;
 }

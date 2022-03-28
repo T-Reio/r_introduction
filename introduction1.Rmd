@@ -89,7 +89,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## インストール
 
-Click: [Download R](https://cran.ism.ac.jp/)
+[Rのダウンロードはここから](https://cran.ism.ac.jp/)
+
 [RStudio Desktop](https://www.rstudio.com/products/rstudio/download/#download)
 
 - 【定期】詰まったら4回生に訊いて下さい
@@ -117,6 +118,9 @@ knitr::include_graphics("figs/rstudio_appearance.png")
 1 + 2 * (3 / 4) # 掛け算は*で
 13 %% 5 # 剰余
 ```
+## オブジェクトの扱い
+
+- 
 
 # データの操作
 
