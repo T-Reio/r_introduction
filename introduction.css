@@ -1,10 +1,10 @@
 .reveal div {
-  font-size: 100%;
+  font-size: 90%;
   text-align: left;
 }
 
 .reveal h1 {
-  font-size: 120%;
+  font-size: 110%;
   font-weight: bold;
   text-align: center;
 }
@@ -19,14 +19,11 @@
   text-align: left;
 }
 
-.reveal span {
+.reveal code {
   font-size: 110%;
 }
 
-.reveal code {
-  font-size: 120%;
-
 .reveal a {
-color:#00008b;
-text-decoration:underline;
+  color:#00008b;
+  text-decoration:underline;
 }

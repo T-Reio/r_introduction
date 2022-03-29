@@ -25,6 +25,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - R言語とは？
 - Rでできること
+  - 研究・分析のフロー
+- R言語の基本構造
 
 ## R言語とは？
 
@@ -40,18 +42,18 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Rでできること
 
--   データの操作：tidyverse
+- データの操作
 
     - データの取得：デフォルトのデータセット、csvファイル等の読み込み
     - データの整理：必要な情報の抽出、データの変形、新たな変数の作成と保存
 
-- データの可視化
+- データの要約・可視化
 
+    - 基本統計量の作成
     - 変数間の関係を視覚的に描写：graphics, ggplot2
 
 - データ分析
 
-    - 基本統計量の作成
     - 計量経済学・統計学で用いられる様々な手法の実装
     - 結果の出力
 
@@ -62,6 +64,19 @@ knitr::opts_chunk$set(echo = TRUE)
         - Word, Powerpoint形式でファイルを出力
 
     - 出力の保存や体裁を整える手間が削減できる
+    
+## データの操作
+
+## データの要約・可視化
+
+## データ分析
+
+## レポートの作成
+
+## おまけ：データの取得
+
+- ウェブサイトから情報を収集して分析を行いたい場合がある
+- Rのコードからウェブサイトを開き、中の要素を分析に使えるデータセットとして出力することができる
 
 ## 基本構造
 
@@ -90,7 +105,29 @@ knitr::opts_chunk$set(echo = TRUE)
 - [R Tips](http://cse.naro.affrc.go.jp/takezawa/r-tips/r.html)
 - [RjpWiki](http://www.okadajp.org/RWiki/)
 
+## その他
+
+- ショートカット：マウスを極力使わない→作業効率の改善
+- 共通の操作
+  - Ctrl + X, C, V：順に切り取り・コピー・貼り付け
+  - Ctrl + A：全範囲を選択
+  - Ctrl + Z, Y：操作を戻す・進める
+  - Ctrl + F：ウィンドウ内検索
+  - Ctrl + S：(上書き)保存
+- R Studio内の操作
+  - Ctrl + Shift + N：新しいスクリプトを開く
+  - Ctrl + O：保存したファイルを開く(Studio以外でもだいたい使える)
+  - Ctrl + W：タブを閉じる(Chromeとかブラウザも同じ)
+  - Ctrl + Q：R Studioの終了
+- Word, PowerPoint, Excelを扱うときもできるだけマウスを使わない
+  - 慣れると作業効率がだいぶ変わる
+
 # Setup
+
+- Rでの作業に使うもの
+  - 開発環境とは、R Studioのすすめ
+- インストール
+- 基本操作画面
 
 ## Rでの作業に必要なもの
 
@@ -102,6 +139,12 @@ knitr::opts_chunk$set(echo = TRUE)
   - その他にも Jupyter Notebook, VS Code, Atomなど様々な開発環境があるので、好きなものを使えばよい
 - R Studio Cloud: クラウド上でR Studioの機能を利用できるサービス
   - 無料の場合は月あたりの利用時間が制限されるなど問題はあるが、特に自前PCのない人は検討してみてもよいかも
+  
+## RとR Studio
+
+```{r, out.width="95%", echo=FALSE, fig.align='center'}
+knitr::include_graphics("figs/r_structure.png")
+```
 
 ## インストール
 
@@ -129,6 +172,18 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, out.width="77%", echo=FALSE, fig.align='center'}
 knitr::include_graphics("figs/rstudio_appearance.png")
 ```
+
+## 触ってみる
+
+- コンソールに適当なコードを入力してみよう
+
+```{r}
+1 + 3 + 5
+```
+
+- コンソールではEnter, ソース(スクリプト)ではCtrl + Enterでコードを実行する
+- 出力は>に続いて出る(文字色が変わるので分かりやすいはず)
+- このスライド上では、コード、出力を四角囲みで、うち出力を##に続く形で表現する
 
 # プロジェクトの作成、バージョン管理
 
@@ -170,6 +225,12 @@ knitr::include_graphics("figs/directory_system.png")
 ```{r, out.width="95%", echo=FALSE, fig.align='center'}
 knitr::include_graphics("figs/directory_system2.png")
 ```
+
+## 拡張子
+
+- PC上で扱うファイルには、それがどのアプリケーション(ソフト)で利用するものなのかがPC側に伝わる印が付いていることが多い：拡張子
+  - 例えば.csvはMicrosoft Excelで開くと決めている(既定のアプリ)
+  - .RはRスクリプトを表すことが分かるのでR StudioやR GUI、.htmlはブラウザで開く
   
 ## フォルダの共有方法
 
@@ -180,16 +241,28 @@ knitr::include_graphics("figs/directory_system2.png")
   - [Dropbox](https://www.dropbox.com/)
   - [GitHub](https://github.com/)
   
-  特にGitHubはRStudioと直接連携して簡単にクラウド共有・共有したデータのダウンロードも可能なので非常に便利：データをオープンで保有することになるので、扱うデータの種類によっては注意が必要
+- 特にGitHubはRStudioと直接連携して簡単にクラウド共有・共有したデータのダウンロードも可能なので非常に便利
+  - データをオープンで保有することになるので、扱うデータの種類によっては注意が必要
+
+## フォルダの共有方法(cont'd)
   
 - Google Driveを使う方法もあり
   - Google Document, Spreadsheet, Slides を使った論文共同執筆はべんり
   - OfficeのWord, Excel, Powerpointに比べると機能がかなり制限される弱点
   - 特にスライド作成に関しては不便なポイントが多いかも
+- 文面はGoogle Driveで共有しながら作成しつつ、体裁を適宜Wordにダウンロードするなどして修正する必要がある
 
 ## プロジェクトの作り方
 
+```{r, out.width="95%", echo=FALSE, fig.align='center'}
+knitr::include_graphics("figs/create_repository.png")
+```
 
+## プロジェクトの作り方(cont'd)
+
+```{r, out.width="95%", echo=FALSE, fig.align='center'}
+knitr::include_graphics("figs/create_repository2.png")
+```
 
 # 基本操作
 
@@ -200,16 +273,14 @@ knitr::include_graphics("figs/directory_system2.png")
 - R Studioを開く
   - R Consoleにコードを直接入力してEnter、もしくはRスクリプトにコードを記述してCtrl + Enterで実行
   - RスクリプトはCtrl+Shift+Nで作成可能
+  - Ctrl + Sで保存、上書き保存
 
 ```{r K3}
 1 + 2 * (3 / 4) # 掛け算は*で
 13 %% 5 # 剰余
 ```
-## オブジェクトの扱い
 
-- 
-
-  - その他、基本的な演算記号は[R-Tips](http://cse.naro.affrc.go.jp/takezawa/r-tips/r.html)などを参照せよ
+- その他、基本的な演算記号は[R-Tips](http://cse.naro.affrc.go.jp/takezawa/r-tips/r.html)などを参照せよ
 
 ## 関数
 
@@ -228,10 +299,15 @@ library(tidyverse) # tidyverse パッケージを有効化：起動したとき�
 ## 関数 (cont'd)
 - 引数の名前は関数ごとに決まっており、必要なオプションに対して情報を指定する
 - 引数を指定しなければエラーが出るものと、指定しない場合のオプションを自動で選んでくれるものとが存在
-```{r, out.width="47%"}
-# y = x^2 のグラフの描画、定義域は-5から5
-# pchはプロットの形を指定、colはプロットの色
-plot(x = -5:5, y = (-5:5)^2, pch = 19, col = "magenta") 
+- パッケージ名::関数名()でその関数がどのパッケージに属しているかを明示することもできる
+
+## 例：図形の描画
+
+- $y = x^2$のグラフの描画、定義域は-5から5
+- pchはプロットの形を指定、colはプロットの色
+
+```{r, out.width="47%", fig.align='center'}
+graphics::plot(x = -5:5, y = (-5:5)^2, pch = 19, col = "magenta") 
 ```
 
 ## 変数の型
@@ -381,7 +457,8 @@ head(penguins_raw, 5)
 
 # データの概観：要約と可視化
 
-- 
+- 要約統計量の確認
+- データを可視化する：ggplot2パッケージの利用
 
 # 分析と結果の表示
 
@@ -394,6 +471,7 @@ head(penguins_raw, 5)
 # RMarkdownを用いたレポートの作成
 
 - Markdown形式のドキュメント
+  - 数式フォントの利用
 - コードブロックの作成
 - htmlドキュメントの作成
 - Powerpointファイルへの変換
