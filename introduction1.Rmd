@@ -69,6 +69,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - 利用するデータの読み込み
 
+```{r, out.width="70%", echo=FALSE, fig.align='center'}
+knitr::include_graphics("figs/data_rei.png")
+```
+
 - データを加工する
 
   - 欲しい行だけ抜き出す、欲しい列だけ抜き出す
@@ -80,13 +84,43 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - 要約統計量の作成
 
+```{r, out.width="80%", echo=FALSE, fig.align='center'}
+knitr::include_graphics("figs/summary_ex.png")
+```
+
+- データの概要を示す：各変数の平均・標準偏差など
+- 性別ごと、年代ごとなど、カテゴリで分けて表示する場合も
+- 可視化できるデータは可視化すると分かりやすい
+
+## 可視化されたデータの例
+
+```{r, warning=FALSE, fig.align='center', fig.height=4, fig.width=6}
+df <- palmerpenguins::penguins
+ggplot2::ggplot(df) +
+  ggplot2::aes(x = body_mass_g, y = bill_length_mm, colour = species) +
+  ggplot2::geom_point() +
+  ggplot2::scale_colour_viridis_d()
+```
+
 
 ## データ分析
 
+$$\text{weight}_{i} = \text{flipperSize}_i + \text{Spiecies}_i + u_i$$
+  
+```{r, out.extra="70%"}
+df %>%
+  lm(formula = body_mass_g ~ flipper_length_mm + species, data = .) %>%
+  summary()
+```
+
 ## レポートの作成
+
+- Rで行った分析の結果を、Wordやパワーポイントにまとめて出力、保存できる
+- 習熟度によってはそのまま論文を書くことも可能、そこまでいかずとも色々と手間が省けて便利
 
 ## おまけ：データの取得
 
+- Rでは様々なデータセットを
 - ウェブサイトから情報を収集して分析を行いたい場合がある
 - Rのコードからウェブサイトを開き、中の要素を分析に使えるデータセットとして出力することができる
 
@@ -157,6 +191,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, out.width="95%", echo=FALSE, fig.align='center'}
 knitr::include_graphics("figs/r_structure.png")
 ```
+
+## CSVファイルと Microsoft Excel
+
+- csvファイル：データをカンマ(,)と改行を使って表現するテキストデータ
+  - Officeが入っているPCでは、拡張子「.csv」のファイルはExcelで開かれるが、別にExcel以外では使えないわけではない
+- これを一般的なテキストエディタで開くとこうなる
 
 ## インストール
 
