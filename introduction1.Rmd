@@ -1,25 +1,35 @@
 ---
 title: "An Introduction to R"
 author:
-  - "Reio Tanji"
-  - "Osaka Univ., Graduate School of Econ."
+- Reio Tanji
+- Osaka Univ., Graduate School of Econ.
 date: "April, 2022"
-output: 
+output:
   revealjs::revealjs_presentation:
-    self_contained: FALSE
+    self_contained: no
     theme: serif
     css: introduction.css
-    reveal_plugins: ["menu"]
+    reveal_plugins: menu
     reveal_options:
       menu:
-        numbers: TRUE
+        numbers: yes
+  beamer_presentation: default
   html_document: default
+  powerpoint_presentation: default
 ---
 
 ```{r setup, include=FALSE}
 library(tidyverse)
 knitr::opts_chunk$set(echo = TRUE)
 ```
+# はじめに
+
+- このスライドはhtml形式で保存しています
+  - 左下のハンバーガーアイコンをクリックすると各ページに飛べます
+  - ただ、PC以外の方法で閲覧するのはちょっと不便
+- ファイルをpdfで保存することができます
+  - ブラウザURLの末尾に"?print-pdf"を付け、ページを印刷するとpdf形式で保存できます
+  - 紙に印刷して見たい、単純に見づらいからpdfで閲覧したいという方はどうぞ
 
 # R言語を使う
 
@@ -105,9 +115,11 @@ ggplot2::ggplot(df) +
 
 ## データ分析
 
+- 回帰分析などの統計手法による分析を行い、結果をまとめる
+
 $$\text{weight}_{i} = \text{flipperSize}_i + \text{Spiecies}_i + u_i$$
   
-```{r, out.extra="70%"}
+```{r, out.extra="70%", echo=FALSE}
 df %>%
   lm(formula = body_mass_g ~ flipper_length_mm + species, data = .) %>%
   summary()
@@ -318,9 +330,15 @@ knitr::include_graphics("figs/create_repository2.png")
 
 # 基本操作
 
+- コンソールに数値を打ち込む、計算する
+- スクリプトの作成
+- 変数の型
+- オブジェクトに数値などを割り当てる
+- 値を束にして扱う
+
 ## スクリプトの作成、演算子
 
-- "r_introduction"というプロジェクトを作成、事前に配布したファイルの中身をその中に展開
+- "r_introduction"というプロジェクトを作成
 
 - R Studioを開く
   - R Consoleにコードを直接入力してEnter、もしくはRスクリプトにコードを記述してCtrl + Enterで実行
@@ -331,7 +349,7 @@ knitr::include_graphics("figs/create_repository2.png")
 1 + 2 * (3 / 4) # 掛け算は*で
 ```
 
-- その他、基本的な演算記号は[R-Tips](http://cse.naro.affrc.go.jp/takezawa/r-tips/r.html)などを参照せよ
+- その他、基本的な演算記号は[R-Tips](http://cse.naro.affrc.go.jp/takezawa/r-tips/r.html)などを参照
 
 ## 変数の型
 
@@ -389,6 +407,17 @@ pi # デフォルトで円周率が格納されている
 value <- 8 # valueという文字列に8を代入
 value + 10 # 今valueの値は8なので、8 + 10を計算した結果を返してくれる
 ```
+
+## 値を束にして扱う
+
+- ぶっちゃけ、$5 \times 5$ぐらいの計算なら電卓でやればよい
+- R、というかPCで計算ができる強みは、複数の計算や結果の保存を同時に行うことができる点
+  - 人間の頭は複数の計算を同時に扱えない
+  - 計量分析を行う上で不可欠な行列計算などと相性が良い
+- Rには複数の数値を扱うための束を作る記法が存在する
+  - ベクトル：複数の値を順番付きで格納
+  - 行列、データフレーム：行方向と列方向に展開、ベクトルを束にしたものともいえる
+  - リスト：行列やデータフレームを束にして扱うことができる
 
 ## ベクトル
 
@@ -459,11 +488,6 @@ print(listA[[1]]) # リストの中の一部の要素のみ利用する場合は
 log(x = 100, base = 10) # 100の対数、底10で計算
 log(x = 100, base = 5) # 底を5に変更
 ```
-- デフォルトで搭載されている関数の他に、便利な関数をまとめて利用可能にする「パッケージ」をインストール・活用することもできる
-```{r, eval=FALSE}
-install.packages("tidyverse") # tidyverse パッケージをインストール
-library(tidyverse) # tidyverse パッケージを有効化：起動したときに毎回実行する
-```
 
 ## 関数 (cont'd)
 - 各関数において使用される引数の名前は決まっており、必要なオプションに対して一つひとつ情報を指定する
@@ -473,6 +497,19 @@ library(tidyverse) # tidyverse パッケージを有効化：起動したとき�
 - 実行結果のエラー
   - エラー：引数指定の不備などで計算が実行できなかった場合
   - 警告(warning)：引数を自動補完した、計算結果に不備があるなどしたが、とりあえず結果は出た
+  
+## パッケージの利用
+
+- パッケージ：便利な関数をまとめて利用可能にする関数のセット
+- 世界中のプログラマーが様々な分野における分析やデータ収集に関するパッケージを開発・公開している
+  - これらを全て無料でダウンロードし、利用できるのがRの強み
+- `install.packages`関数を用いてCRAN(公式のインストールサイト)からインストール
+- その他、Githubにパッケージを公開している人もいるので、その場合は別の関数を利用
+- インストールしたパッケージは、毎回Rの起動時に`library`関数、もしくは`require`関数を用いて有効化する
+```{r, eval=FALSE}
+install.packages("tidyverse") # tidyverse パッケージをインストール
+library(tidyverse) # tidyverse パッケージを有効化：起動したときに毎回実行する
+```
 
 ## 例：図形の描画
 
@@ -561,8 +598,8 @@ head(penguins_raw, 5)
   - 数式フォントの利用
 - コードブロックの作成
 - htmlドキュメントの作成
-- Powerpointファイルへの変換
 - Wordファイルへの変換
+- Powerpointファイルへの変換
 - R Markdownを併用して論文作成・スライド作成の手間を省く
 
 ## Markdownとは
