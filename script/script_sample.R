@@ -1,15 +1,21 @@
-library(palmerpenguins)
+#install.packages("palmerpenguins")
+#install.packages("tidyverse")
+#install.packages("AER")
+#install.packages("estimatr")
+#install.packages("huxtable")
+
+#でコメントアウトできる：実行しても無視されるので、メモ書きに使える
+
 library(tidyverse)
 
-#palmerpenguins::penguins_raw %>%
-#  write_csv("data/penguins.csv")
+# ここに項目名を書いて -----か####を打つと折りたたみできる -----------------
 
 # 基本操作-------------------------------
 
 1 + 2 * (3 / 4) # 掛け算は*で
 13 %% 5 # 剰余
 
-# 変数型
+# 変数型---------------------------------
 class(3.14) # class()はその変数の型を返す関数
 class('1.90') # 文字列 character と判定される
 
@@ -65,3 +71,16 @@ graphics::plot(x = domain, y = .5 * domain + 4, pch = 19, col = "blue")
 
 # y = x^2 のグラフの描画、定義域は-5から5
 # pchはプロットの形を指定、colはプロットの色
+
+
+# データ操作---------------------
+
+library(palmerpenguins)
+
+penguin_df <- palmerpenguins::penguins
+write_excel_csv(penguin_df, path = "data/penguins.csv")
+
+palmerpenguins::penguins %>% # パイプ演算子を使った記法
+  write_csv("data/penguins.csv")
+
+df <- read_csv('data/penguins.csv') # 読み込み

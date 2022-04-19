@@ -28,7 +28,7 @@ knitr::opts_chunk$set(echo = TRUE)
   - 左下のハンバーガーアイコンをクリックすると各ページに飛べます
   - ただ、PC以外の方法で閲覧するのはちょっと不便
 - ファイルをpdfで保存することができます
-  - ブラウザURLの末尾に"?print-pdf"を付け、ページを印刷するとpdf形式で保存できます
+  - ブラウザURLの末尾の"\~html"の後ろに"?print-pdf"を付け、ページを印刷するとpdf形式で保存できます
   - 紙に印刷して見たい、単純に見づらいからpdfで閲覧したいという方はどうぞ
 
 # R言語を使う
@@ -153,6 +153,8 @@ df %>%
 
 - この命令を一つ一つ書く作業を行う
 
+- ExcelやWordなどのソフトウェアでは、こうした命令をコードを書く代わりにボタン操作などでまとめて行ってもらっている
+
 ## 参考
 
 - 立命館大：森先生のサイトが大変勉強になります
@@ -203,12 +205,6 @@ df %>%
 ```{r, out.width="95%", echo=FALSE, fig.align='center'}
 knitr::include_graphics("figs/r_structure.png")
 ```
-
-## CSVファイルと Microsoft Excel
-
-- csvファイル：データをカンマ(,)と改行を使って表現するテキストデータ
-  - Officeが入っているPCでは、拡張子「.csv」のファイルはExcelで開かれるが、別にExcel以外では使えないわけではない
-- これを一般的なテキストエディタで開くとこうなる
 
 ## インストール
 
@@ -290,11 +286,22 @@ knitr::include_graphics("figs/directory_system.png")
 knitr::include_graphics("figs/directory_system2.png")
 ```
 
+## ワーキングディレクトリの確認と変更
+
+- ワーキングディレクトリ：Rが見ているフォルダ
+  - CSVなどのファイルを読み込む際は、このフォルダから指定された名前のファイルを探す
+- R Studioのプロジェクトを利用している時は、そのフォルダがある場所がワーキングディレクトリ
+- `getwd`関数で今のワーキングディレクトリを確認できる
+  - `setwd`で変更できるが、基本的には相対パスで指定した方が再現性が高いのでおすすめ
+- ファイル名：基本全て""で囲む、ワーキングディレクトリの中にあるフォルダを開きたい場合は/で区切る
+  - `"C:/folder1/folder2/data.csv"`
+
 ## 拡張子
 
 - PC上で扱うファイルには、それがどのアプリケーション(ソフト)で利用するものなのかがPC側に伝わる印が付いていることが多い：拡張子
   - 例えば.csvはMicrosoft Excelで開くと決めている(既定のアプリ)
   - .RはRスクリプトを表すことが分かるのでR StudioやR GUI、.htmlはブラウザで開く
+  - R Studio、Excelのそれぞれでcsvファイルを開いてみよう
   
 ## フォルダの共有方法
 
@@ -328,6 +335,14 @@ knitr::include_graphics("figs/create_repository.png")
 knitr::include_graphics("figs/create_repository2.png")
 ```
 
+## ディレクトリの管理
+
+```{r, out.width="95%", echo=FALSE, fig.align='center'}
+knitr::include_graphics("figs/directory_example.png")
+```
+
+- 元データ、Rスクリプト、作成した画像や表…など、作ったものをフォルダで整理すると便利
+
 # 基本操作
 
 - コンソールに数値を打ち込む、計算する
@@ -335,6 +350,15 @@ knitr::include_graphics("figs/create_repository2.png")
 - 変数の型
 - オブジェクトに数値などを割り当てる
 - 値を束にして扱う
+
+## 入力画面
+
+- コンソール(通常左下)の">"が入力待ち状態を表す
+- 命令を書いてEnterキーを押すと実行できる
+
+```{r, out.width="95%", echo=FALSE, fig.align='center'}
+knitr::include_graphics("figs/console.png")
+```
 
 ## スクリプトの作成、演算子
 
@@ -350,6 +374,16 @@ knitr::include_graphics("figs/create_repository2.png")
 ```
 
 - その他、基本的な演算記号は[R-Tips](http://cse.naro.affrc.go.jp/takezawa/r-tips/r.html)などを参照
+
+## Source: スクリプトやマークダウンファイルの編集
+
+```{r, out.width="95%", echo=FALSE, fig.align='center'}
+knitr::include_graphics("figs/script.png")
+```
+
+- Ctrl + Enterで選択箇所のコードを実行
+- 長いコードを途中で改行できることも利点
+- Ctrl + Sで適宜上書き保存できる
 
 ## 変数の型
 
@@ -520,16 +554,39 @@ library(tidyverse) # tidyverse パッケージを有効化：起動したとき�
 graphics::plot(x = -5:5, y = (-5:5)^2, pch = 19, col = "magenta") 
 ```
 
-# データの操作
+# データ操作
 
-- デフォルト/特定のパッケージに含まれるデータの利用
-- 外部ファイルからデータを読み込む
-- データの概要を把握する：記述統計の表示
-- データを整理する
-  - 新しい変数を作成する
-  - 不要な行を削除する
-  - 不要な列を削除する
+- tidyverse パッケージの活用
+- R内のデータセットを利用する
+- データの中身を確認する
+- csvファイルの読み込み、保存
+  - csvファイルを保存する
+  - PCに保存したデータを読み込む
+  - ネットで公開されているcsvファイルを読み込む
+  - その他のデータ形式
+- データの詳細を調べる
+  - サイトの参照
+  - 要約統計量の作成：データの概観を掴む
+- データを操作する
+  - 不要な行・列の削除
+  - サンプルの分割
+  - 新しい列の作成・条件分岐
   - 文字列の処理
+  
+## tidyverse パッケージ
+
+- 外部からのデータの読み込みや整理、可視化(次章で説明)に必要な関数を一通り揃えた便利なパッケージ
+- パッケージの中に様々な目的で作成された複数のパッケージを含んでおり、実際に使用する時は`library(tidyverse)`で全ての関数を利用できる
+  - readr: データの読み込みや書き出しを担当するパッケージ
+  - ggplot2: データの可視化：散布図やグラフの作成
+  - dplyr: データの整形を行うパッケージ
+  - purrr: 繰り返し計算(ループ)を行うための関数
+- `install.package`を活用してインストール
+
+```{r, eval=FALSE}
+install.packages("tidyverse")
+library(tidyverse)
+```
 
 
 ## データの取得
@@ -546,14 +603,16 @@ install.packages("palmerpenguins")
 
 ```{r, eval=FALSE}
 library(palmerpenguins)
-palmerpenguins::penguins_raw
+palmerpenguins::penguins
 ```
 
+- "::"の前にパッケージ名、後ろに関数名(or データフレーム名)を置く記法ならどのパッケージを利用しているのか分かりやすい、この辺はお好みで
+
 ## データを確認
-```{r, echo=FALSE, warning=FALSE, out.width="80%"}
+```{r, echo=FALSE, warning=FALSE, out.width="60%", out.height="60%"}
 library(palmerpenguins)
 DT::datatable(
-  palmerpenguins::penguins_raw,
+  palmerpenguins::penguins,
   filter = "top",
   options = list(
     pageLength = 3,
@@ -563,9 +622,8 @@ DT::datatable(
 )
 ```
 
-## CSVファイルからデータフレームを読み込み
-
-- csv (comma separated values)
+- penguinデータの他、経済学向けのデータセットも利用できる
+- AERパッケージをダウンロードすると良い
 
 ## Penguins データの概要
 
@@ -573,12 +631,76 @@ DT::datatable(
 - 元論文：[Kristen B. Gorman ,Tony D. Williams, and William R. Fraser (2014)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081)
 - 論文引用のフォーマット
   - Gorman KB, Williams TD, Fraser WR (2014) Ecological Sexual Dimorphism and Environmental Variability within a Community of Antarctic Penguins (Genus Pygoscelis). PLoS ONE 9(3): e90081. [https://doi.org/10.1371/journal.pone.0090081]
+  - 著者名、公刊年度、タイトル、学術誌名、その他(URLなど)の順で記載するのが一般的
   - "Cite" みたいなボタンを押すと簡単にフォーマットをコピーできることが多いです
+- ここではこのデータセットを例に、基本的なデータ操作を学習する
+- palmerpenguinsパッケージには、成型前のデータ(penguins_raw)も入っている
+  
+## データの一部分を確認する
+
 - head(データフレーム, 行数)でデータの行頭を表示させることができる
+- tailなら下から
 
 ```{r}
 head(penguins_raw, 5)
 ```
+
+- R Studio中では`View`関数を使うと別ウインドウで開くのでこれが見やすい
+
+## 外部ファイルでのデータの扱い
+
+- Rで利用できるデータセットはチュートリアルに便利だが、実証分析にそのまま使うのは難しい
+  - データの種類
+    - 二次データ：官庁や大学、民間のリサーチ会社やデータサイトなど、自分以外が作成したデータを借りる(目的に合うデータがあればこちらがベター)
+    - 一次データ：自作のアンケートや経済実験などを実施し、自らデータセットを作成する
+  - いずれにせよ、外部から取得してきたデータをRに読み込んでもらう必要がある
+  - csv (comma separated values) ファイルは、代表的なデータ保存方法：データがカンマで区切られている
+- ただし、取得したデータにはノイズ(欠損値がある観測や、質問を誤解している回答など)が含まれており、分析を行うためにこれらの問題に対処する必要がある
+  - 分析の種類によっては必要ない情報が含まれていることも
+  - データを読み込むと同時に、整理したものを保存しておく機能も必要
+  
+## 取得したデータをcsvファイルとして保存
+
+- `readr::write_excel_csv`関数を活用
+  - 保存したいデータフレーム名と、保存先のファイル名を指定、実行すれば、ファイルをcsv形式で保存してくれる
+  - 保存したものをExcelで開くことも可能
+- プロジェクトファイル内に"data"というフォルダを作り、その中にデータを保存してみよう
+
+```{r, eval=FALSE}
+penguin_df <- palmerpenguins::penguins
+readr::write_excel_csv(penguin_df, path = "data/penguins.csv")
+```
+
+
+## CSVファイルからデータフレームを読み込み
+
+- デフォルトで利用できる`read.csv`関数を使っても良いが、readrパッケージの`read_csv`関数の方が速い
+- さっき保存したファイルをオブジェクト`df`に代入しておく
+  - Tabキーを押すとフォルダ内のキーワード検索も可能
+
+```{r}
+df <- readr::read_csv("data/penguins.csv")
+```
+
+  - read_csv関数の場合、読み込んだデータの各列の型を報告してくれる：num, chr, int, ...
+  
+## ネットに公開されているURLからcsvファイルを読み込む
+
+- csvファイルがネット上に公開されていることもある：この場合も、read_csv関数で読み込み可能
+  - URLの文字列を入力し、read_csvで読み込む
+  
+```{r, eval=FALSE}
+url <- 'https://raw.githubusercontent.com/chadwickbureau/register/master/data/people.csv' # URLは一例
+df <- read_csv(url)
+```
+
+## その他のデータ形式
+
+- csv以外にも様々なデータ形式が存在、それぞれ対応した関数を使うと読み込み可能：基本read_〇〇などの関数名が指定されていることが多い
+  - txt形式のファイルはcsv, tsvなどとしてそのまま読み込める場合もある
+- xlsxファイル
+- 大容量のデータを保存したい & Excelなどのソフトでデータを扱う予定がない場合はrdsファイルと呼ばれるR向けのバイナリファイルとして保存すると、ハードの保存領域を節約できる：read_rds, write_rds
+- その他、知らないデータ形式が来たらとりあえずRで開けるか確認してみる
 
 # データの概観：可視化
 
@@ -590,7 +712,6 @@ head(penguins_raw, 5)
 - 最小二乗法
 - 最尤法
   - ロジスティック回帰
-- 操作変数法
 
 # RMarkdownを用いたレポートの作成
 
@@ -615,4 +736,4 @@ head(penguins_raw, 5)
 
 - 論文執筆・輪読の資料報告は班単位で行うので、スライドや分析結果を複数人で作成・共有する必要がある
 - Dropbox, Github, Google Drive などでファイルごと共有しておくと、スライドをくっつけたり各自が修正したものをすり合わせる作業が削減できる、たぶん
-- 覚えておいて損はないのでまあ興味があれば訊いて下さい
+- 覚えておいて損はないのでまあ興味があれば
