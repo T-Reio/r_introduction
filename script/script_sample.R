@@ -95,3 +95,7 @@ library(skimr)
 
 df %>%
   skim()
+
+
+# ggplotの可視化
+

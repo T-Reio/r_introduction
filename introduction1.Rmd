@@ -20,6 +20,7 @@ output:
 
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(AER)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 # はじめに
@@ -30,6 +31,25 @@ knitr::opts_chunk$set(echo = TRUE)
 - ファイルをpdfで保存することができます
   - ブラウザURLの末尾の"\~html"の後ろに"?print-pdf"を付け、ページを印刷するとpdf形式で保存できます
   - 紙に印刷して見たい、単純に見づらいからpdfで閲覧したいという方はどうぞ
+  
+## 関係資料
+
+- このスライドを含めた資料は以下のURLからダウンロードできます
+  - スクリプトのサンプル
+- 適宜更新していく(予定)ので、たまにチェックしてみて下さい
+  - スライドは綺麗に上がらなかったので、来週分はまたSlack (山本先生経由) でお送りします
+
+## 自己紹介
+
+- 丹治 伶峰 (たんじ れいお)
+  - 大阪大学大学院 博士後期課程
+  - 大阪大学経済学部卒業 (2018)
+    - 学部時代は準硬式野球部に所属してました
+  - 専門: 労働経済学・行動経済学
+    - 野球のデータを使って色々してます
+    - 野球以外もしてます
+  - 趣味: 音楽聴く、Fantasy Baseball
+- よろしくおねがいします
 
 # R言語を使う
 
@@ -343,6 +363,7 @@ knitr::include_graphics("figs/directory_example.png")
 ```
 
 - 元データ、Rスクリプト、作成した画像や表…など、作ったものをフォルダで整理すると便利
+- とりあえず、作ったプロジェクトフォルダに「data」と「script」のフォルダを作成してみよう
 
 # 基本操作
 
@@ -497,7 +518,7 @@ print(df)
 
 ## 定義したデータフレームの確認
 
-```{r, out.width="80%", echo=FALSE, fig.align='center'}
+```{r, out.width="90%", echo=FALSE, fig.align='center'}
 knitr::include_graphics("figs/df_check.png")
 ```
 
@@ -1011,6 +1032,10 @@ sum %>%
 # データの概観：可視化
 
 - データを可視化する：ggplot2パッケージの利用
+- ggplotの記法を覚える
+  - ヒストグラム
+  - 散布図
+  - 棒グラフ
 
 ## データを可視化する
 
@@ -1058,21 +1083,185 @@ ggplot2::ggplot(data = df) +
 
 ## 細かな体裁の変更
 
-- グラフの
+- グラフの背景や軸ラベルを設定する
+  - 背景：`theme_〇〇` 関数で様々な書式を設定できるので、お好みで好きなものを利用。なるべくシンプルなものがよい
+  - 軸ラベルなど：`labs`関数で文字を指定、各オプションが対応する場所のテキストが変更される
+  
+```{r, out.width="40%", fig.align='center', warning=FALSE, message=FALSE}
+ggplot2::ggplot(data = df) +
+  aes(x = body_mass_g, y = ..density..) +
+  geom_histogram() +
+  theme_bw() + # 背景の設定
+  labs(x = "体重 (g)", y = "密度", title = "ぺんぎんの体重分布")
+```
 
-## グループを分けて
+  
+
+## グループを分けて描画する
+
+- `aes`にgroup引数を指定すると、それぞれの描画をグループごとにやってくれる
+- 同様にcolour・fillを指定すると、グループごとに色分けしてくれる
+  - 通常colour は縁取り、fillは塗りつぶし部分を担当
+
+```{r, out.width="40%", fig.align='center', warning=FALSE, message=FALSE}
+ggplot2::ggplot(data = df) +
+  aes(x = body_mass_g, y = ..density.., group = sex, fill = sex) + 
+  # 横軸に..density..を指定すると、計数の代わりに密度を出してくれる
+  geom_histogram(alpha = .5) + # alpha は透明にするためのオプション
+  theme_bw() + # 背景の設定
+  labs(x = "体重 (g)", y = "密度", title = "ぺんぎんの体重分布", fill = "性別")
+```
+
+
+## 散布図：二変数間の関係を可視化する
+
+- 散布図は二変数間の関係を示すのに便利：`geom_point`関数を利用
+- 横軸と縦軸両方に変数が必要
+- 
+
+```{r, out.width="40%", fig.align='center', warning=FALSE, message=FALSE}
+ggplot2::ggplot(df) +
+  ggplot2::aes(x = body_mass_g, y = bill_length_mm, colour = species) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm", colour = "black") + # 最小二乗法で近似曲線を描画
+  ggplot2::labs(x = "体重 (g)", y = "くちばしの長さ (mm)")
+```
+
+## 散布図 (cont'd)
+
+```{r, out.width="40%", fig.align='center', warning=FALSE, message=FALSE}
+ggplot2::ggplot(df) +
+  ggplot2::aes(x = body_mass_g, y = bill_length_mm, colour = species, group = species) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm", colour = "black") + # 最小二乗法で近似曲線を描画
+  ggplot2::labs(x = "体重 (g)", y = "くちばしの長さ (mm)")
+```
+
+- group化すると種類ごとに近似曲線を引いてくれる
+
+## 棒グラフ：グループ間の変数の比較
+
+- 棒グラフを描画する関数は`geom_bar`関数だが、データフレームから各値の平均を計算してグラフを作成するのはちょっと面倒くさい
+- データの平均値を比較したい場合：`stat_summary`で、「平均値を」「棒グラフの形で」描画することをオーダーできる
+
+```{r, out.width="40%", fig.align='center', warning=FALSE, message=FALSE}
+df_clean <- df %>%
+  filter(!is.na(sex)) # 性別不明を取り除く
+ggplot2::ggplot(df_clean) +
+  ggplot2::aes(x = sex, y = body_mass_g, fill = sex) +
+  ggplot2::stat_summary(geom = "bar", fun = "mean") + # 棒グラフを、平均を示す形で
+  ggplot2::stat_summary(geom = "pointrange", fun.data = "mean_se") +
+  ggplot2::labs(x = "", y = "体重 (mm)")
+```
+
+## 折れ線グラフ：
+
+```{r, out.width="40%", fig.align='center', warning=FALSE, message=FALSE}
+ggplot2::ggplot(df) +
+  ggplot2::aes(x = factor(year), y = body_mass_g, colour = species, group = species) +
+  ggplot2::stat_summary(geom = "point", fun = "mean") +
+  ggplot2::stat_summary(geom = "line", fun = "mean") +
+  ggplot2::stat_summary(geom = "pointrange", fun.data = "mean_se") +
+  ggplot2::theme_bw() +
+  ggplot2::labs(x = "", y = "体重 (mm)")
+```
+
+## グラフそのものを系統ごとに分ける
+
+- 重ねると見づらいから複数に分けたい
+- `facet_wrap`関数を使うと、サンプルを分割して別々に表示してくれる
+  - 「~ 変数名」で分割の基準となるサンプル、nrow = , ncol = で出力の並べ方を指定
+  
+```{r, out.width="45%", fig.align='center', warning=FALSE, message=FALSE}
+ggplot2::ggplot(df) +
+  ggplot2::aes(x = body_mass_g, y = bill_length_mm, fill = species) +
+  ggplot2::geom_point(colour = "black", shape = "circle filled") +
+  ggplot2::scale_fill_viridis_d() + # 色分けに関する設定を行う関数：塗る色の指定
+  ggplot2::theme_bw() +
+  ggplot2::labs(x = "体重 (g)", y = "くちばしの長さ (mm)") +
+  ggplot2::facet_wrap(facets = ~ island, ncol = 3, nrow = 1) # 島ごとに分けてみる
+```
+
+## グラフを保存する
+
+- 出来上がったグラフを保存する
+- R Studioなら、右下のPlotsに表示されたグラフをクリック操作で保存することもできる
+- プロットをggsave関数に通して保存できる
+
+```{r, eval=FALSE}
+pl <- ggplot2::ggplot(df) + # さっきのやつをオブジェクトに保存
+  ggplot2::aes(x = body_mass_g, y = bill_length_mm, colour = species) +
+  ggplot2::geom_point(colour = "black", shape = "circle filled") +
+  ggplot2::scale_fill_viridis_d() +
+  ggplot2::theme_bw() +
+  ggplot2::labs(x = "体重 (g)", y = "くちばしの長さ (mm)") +
+  ggplot2::facet_wrap(facets = ~ island, ncol = 3, nrow = 1)
+
+ggsave(plot = pl, filename = "figs/plot_sample.png")
+```
+
+## その他の可視化
+
+- 様々な可視化ができます
+- ggplot somethingで作りたいものを調べれば出てくるので参考にして下さい
+- 個人的に就職に一番役立ちそうなのはここだと思う
+- 暇も潰せる
+
+```{r, out.width="65%", echo=FALSE, fig.align='center'}
+knitr::include_graphics("figs/Ohtani_pitch_usage_byMonth.png")
+```
 
 # 分析と結果の表示
 
 - 分析目的の設定
+- 分析の一例：CollegeDistanceデータを用いた分析
+  - 操作変数法
 - 2群間の比較：$t$検定
 - 最小二乗法
 - 最尤法
   - ロジスティック回帰
-- 分析の一例：CollegeDistanceデータを用いた分析
   
 ## 計量分析を行う
 
+- データの要約・可視化が終わったら、因果関係を識別するための分析に取り組む
+- 最も一般的なのは回帰分析
+
+$$y_{i} = \alpha + \beta X_i + u_i$$
+
+- 説明変数の係数を推定し、説明変数の限界的な変化が被説明変数に対してどれだけ影響するかを推定したい
+- ここでは、Rで利用できるパッケージを使って分析の一例を示す
+
+## AERパッケージの導入
+
+- ペンギンのデータは簡潔で便利だが、経済学の分析に使うのはちょっと厳しそう
+- 経済学向けのサンプルデータがあればいい
+- あります：AERパッケージ
+  - [CRAN](https://cran.r-project.org/web/packages/AER/AER.pdf)
+  - パッケージをライブラリで起動後、利用したいデータセットを`data()`関数で起動、データフレームが自動で取り込まれる
+
+```{r, eval=FALSE}
+install.packages("AER")
+library(AER)
+data("DataSetName") #好きなデータセットの名前、一覧はpdfを参照
+```
+
+## AERパッケージの利用
+
+```{r}
+data("CollegeDistance")
+print(head(CollegeDistance))
+```
+
+
+## 課題(佐々木ゼミ向け)
+
+- AERパッケージから好きなデータセットを使い
+  - 分析課題の設定：各データセットに元論文があるので、その研究テーマを使ってもOK
+  - データセットの要約：要約統計量、必要ならグループごとに分けたものを作成し、まとめておく
+  - なんでもいいので新しい変数を作ってみる
+  - データの可視化：分析課題を検証するにあたって必要そうな可視化を行う
+  - CollegeDistanceは解説で使うのでそれ以外で
+- これを踏まえて、来週回帰分析などの分析手法を紹介します
 
 # RMarkdownを用いたレポートの作成
 
