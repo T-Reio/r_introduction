@@ -5,9 +5,6 @@ author:
 - Osaka Univ., Graduate School of Econ.
 date: "April, 2022"
 output:
-  html_document: default
-  powerpoint_presentation: default
-  beamer_presentation: default
   revealjs::revealjs_presentation:
     self_contained: no
     theme: serif
@@ -16,6 +13,9 @@ output:
     reveal_options:
       menu:
         numbers: yes
+  powerpoint_presentation: default
+  beamer_presentation: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
