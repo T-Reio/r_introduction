@@ -22,10 +22,11 @@ class('1.90') # 文字列 character と判定される
 
 "1" + "2" # エラーが出る
 
-pi
-value <- 8 # valueという文字列に8を代入
-value + 10 # 今valueの値は8なので、8 + 10を計算した結果を返してくれる
+### オブジェクトの定義
 
+pi # デフォルトで円周率が格納されている
+value <- 8 # valueという文字列に8を代入
+value + 10
 
 ### ベクトル
 
@@ -35,6 +36,9 @@ vec * 2
 seq(1, 10, 2) #規則性のあるベクトルを作成
 rep(0, 10)
 
+### パッケージインストール
+#install.packages("tidyverse") # tidyverse パッケージをインストール
+library(tidyverse) # tidyverse パッケージを有効化：起動したときに毎回実行する
 
 ### データフレーム
 
@@ -55,10 +59,6 @@ listA[[1]] # リストの中の1つ目の要素だけ出してくる
 
 
 ### 関数
-
-### パッケージインストール
-#install.packages("tidyverse") # tidyverse パッケージをインストール
-library(tidyverse) # tidyverse パッケージを有効化：起動したときに毎回実行する
 
 ### 図形を描画する関数
 

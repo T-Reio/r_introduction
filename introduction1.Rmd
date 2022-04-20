@@ -35,7 +35,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ## 関係資料
 
 - このスライドを含めた資料は以下のURLからダウンロードできます
-  - スクリプトのサンプル
+  - [スクリプトのサンプル](https://raw.githubusercontent.com/T-Reio/r_introduction/main/script/script_sample.R)
+  - 名前を付けて保存→ファイルの種類を「すべてのファイル」に変更して、末尾が「.R」で終わる名前にする
 - 適宜更新していく(予定)ので、たまにチェックしてみて下さい
   - スライドは綺麗に上がらなかったので、来週分はまたSlack (山本先生経由) でお送りします
 
@@ -503,12 +504,8 @@ seq(1, 10, 2)
 
 ## データフレーム (cont'd)
 
-```{r, eval=FALSE}
-library(tidyverse) # パッケージを起動
-```
-
 ```{r}
-df <- tibble::tibble( # dfというオブジェクトにデータフレームを定義
+df <- data.frame( # dfというオブジェクトにデータフレームを定義
   faculty = c("econ", "law", "foreign", "lit"), # 各列のデータをベクトル形式で代入
   grade = c(4, 2, 1, 1),
   toeic = c(300, 820, NA, 785) # NA: 該当する値が存在しないことを表す＝無回答など
