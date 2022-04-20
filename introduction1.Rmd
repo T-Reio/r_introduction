@@ -107,9 +107,10 @@ knitr::include_graphics("figs/summary_ex.png")
 ```{r, warning=FALSE, fig.align='center', fig.height=4, fig.width=6}
 df <- palmerpenguins::penguins
 ggplot2::ggplot(df) +
-  ggplot2::aes(x = body_mass_g, y = bill_length_mm, colour = species) +
-  ggplot2::geom_point() +
-  ggplot2::scale_colour_viridis_d()
+  ggplot2::aes(x = body_mass_g, y = bill_length_mm, fill = species) +
+  ggplot2::geom_point(colour = "black", shape = "circle filled") +
+  ggplot2::scale_fill_viridis_d() +
+  ggplot2::theme_bw()
 ```
 
 
@@ -494,6 +495,11 @@ df <- tibble::tibble( # dfというオブジェクトにデータフレームを
 print(df)
 ```
 
+## 定義したデータフレームの確認
+
+```{r, out.width="80%", echo=FALSE, fig.align='center'}
+knitr::include_graphics("figs/df_check.png")
+```
 
 ## リスト
 
@@ -531,6 +537,18 @@ log(x = 100, base = 5) # 底を5に変更
 - 実行結果のエラー
   - エラー：引数指定の不備などで計算が実行できなかった場合
   - 警告(warning)：引数を自動補完した、計算結果に不備があるなどしたが、とりあえず結果は出た
+  
+## 関数とベクトル
+
+- 関数の引数にベクトルやデータフレームを使用するのももちろん可能
+- `mean`関数、`sd`関数は、それぞれ値の平均、標準偏差を計算する関数
+
+```{r}
+values <- c(1:5, rep(3, 10), 4:10) #1, 2, ..., 5, 3, 3, ... 
+mean(values) # ベクトルの平均を計算
+sd(values)
+```
+
   
 ## パッケージの利用
 
@@ -587,6 +605,22 @@ graphics::plot(x = -5:5, y = (-5:5)^2, pch = 19, col = "magenta")
 install.packages("tidyverse")
 library(tidyverse)
 ```
+
+## パイプ演算子について
+
+- パイプ演算子：`%>%`で記述
+- 一つのオブジェクト (多くはデータフレーム)について、複数の関数を連続して使用したい場合に活用
+- 関数1 `%>%` 関数2 `%>%` 関数3...のように記述
+  - 中身は関数3(関数2(関数1))と同じ
+  
+```{r}
+1:10 %>% # ベクトルを作る、これが直後の関数で操作される
+  mean() %>% # 平均を求める
+  print() # 計算結果(求めた平均を表示する)
+```
+
+- より直感的に分かりやすいコードが書ける
+- 計算過程をいちいち他のオブジェクトに置かなくていい
 
 
 ## データの取得
@@ -668,7 +702,7 @@ head(penguins_raw, 5)
 
 ```{r, eval=FALSE}
 penguin_df <- palmerpenguins::penguins
-readr::write_excel_csv(penguin_df, path = "data/penguins.csv")
+readr::write_excel_csv(penguin_df, file = "data/penguins.csv")
 ```
 
 
@@ -702,16 +736,343 @@ df <- read_csv(url)
 - 大容量のデータを保存したい & Excelなどのソフトでデータを扱う予定がない場合はrdsファイルと呼ばれるR向けのバイナリファイルとして保存すると、ハードの保存領域を節約できる：read_rds, write_rds
 - その他、知らないデータ形式が来たらとりあえずRで開けるか確認してみる
 
+```{r, eval=FALSE}
+penguin_df <- palmerpenguins::penguins
+readr::write_rds(penguin_df, file = "data/penguins.rds")
+```
+
+## データの詳細を調べる
+
+- データを取得したら(取得する前に)、そのデータがどのような情報を含んでいるのかを必ず確認する
+  - 一次データを取得する場合：質問項目や実験のデザインを慎重に検討する
+- ウェブで公開されている二次データには各列に格納されている情報 (documentation) や、アンケートの質問用紙が記載されている
+- 例) 大阪大学 くらしの好みと満足度についてのアンケート：[URL](https://www.iser.osaka-u.ac.jp/survey_data/panelsummary.html)
+  - [調査票](https://www.iser.osaka-u.ac.jp/survey_data/doc/japan/questionnaire/japanese/2021QuestionnaireJAPAN.pdf)
+- データの簡単な要約も記載されていることがある
+
+## 要約統計量
+
+- 整理が終了したら(あるいは、整理を行うために)、データに含まれる情報の概観を記述する
+- データセットに含まれる各列の平均や標準偏差、レンジなどの統計量をまとめて記載する表
+
+```{r, out.width="80%", echo=FALSE, fig.align='center'}
+knitr::include_graphics("figs/summary_ex.png")
+```
+
+- 何らかの介入の効果(法改正や就学、ナッジによる行動変容など…)を検証したい場合は、介入群と統制群が似た集団であることを確認するため、両者を分けて要約統計量を作成する場合も
+- 様々な関数を利用できるので、目的に応じて好きなものを使う
+
+## ペンギンデータの要約統計量
+
+- 最もシンプルなのはsummary関数
+  - 各変数の主要な統計量を記載してくれる
+
+```{r}
+palmerpenguins::penguins %>%
+  summary()
+```
+
+## データを整理する
+
+- 取得したデータはそのまま分析に使えるわけではない
+  - 必要な情報が抜け落ちている場合や、アンケートの設問の誤解等で明らかにおかしな回答が存在することがある
+  - 情報が全て入っているが、その分析に関しては不適当な観測が含まれる場合も
+  - 分析の対象でない観測が一緒に含まれている場合(例えば男性労働者の行動に注目したいときに、女性労働者を含めたまま分析を行うのは不適当)
+  - 元データの情報を用いて、新たに変数を作りたい場合もある(例えば、5段階で回答された幸福度を1,2と3-5の2つに再分類した変数を作成する)
+- これらの問題を解決し、分析に利用可能なデータセットを作成することを「データの整理」「データクリーニング」と呼ぶ
+- tidyverseパッケージから、便利な関数がたくさん提供されている
+  - `filter`関数：行を絞る
+  - `select`関数：列を絞る
+  - `mutate`関数：新しい変数を作成する
+  - `split`関数：データフレームをリストに分割する
+  
+## 列名の付け直し
+
+- 列名は原則アルファベットとアンダースコア(_)で付けておく方がエラーが起こりにくい
+  - 日本語がギリセーフ、アンダースコア以外の記号や引用符は使わない
+  - 数字は2文字目以降にしか使えない
+- もし入っている場合は、`rename` 関数もしくは`set_names` 関数を用いて列名を変更した方が良い
+
+```{r}
+palmerpenguins::penguins %>%
+  dplyr::rename(weight = body_mass_g) %>% # body_mass_g を weightに
+  head(2)
+```
+
+## 列名の付け直し (cont'd)
+
+- `set_names` はそのデータセットの列名をまとめて変更する：列数と同じ長さのchr型ベクトルを指定
+
+```{r}
+newnames <- c("species", "island", "bill_lg", "bill_dep", "flipper", "weight", "sex", "yr")
+palmerpenguins::penguins %>%
+  purrr::set_names(newnames) %>%
+  head(2) %>%
+  print()
+```
+  
+## データを絞る
+
+- 条件にあてはまる行を抜き出す：filter関数を利用
+- 条件式の書き方
+  - 参照する列を記述し、「〇〇に一致する場合」「〇〇より大きい/小さい場合」などの条件をRのルールに従って記述する
+    - `A == B`: A列の内容がBと完全に一致, Bが文字列の場合はクオーテーションで囲う
+    - `A >= B`: B以上の値, 逆なら`<=`
+    - `A %in% c(B, C, D)`: A列の要素がベクトルの要素B, C, Dのいずれかに一致
+    - 否定は!: `A != B`, `!(A %in% c(a, b, c))`
+  - and条件は&, or条件は|で繋ぐ：条件1 | 条件2 なら、1,2いずれかの条件にあてはまるもの
+```{r}
+df <- palmerpenguins::penguins %>%
+  dplyr::filter(species == "Gentoo") # ジェンツーペンギンのみに絞る
+
+print(df %>% head(2))
+```
+
+## 欠損値
+
+- 欠損値(分からない、無回答などの理由で値が入っていない)がある場合、そのセルを取り除いて分析を行うことがある
+- Rでは、`NA`で表す：型は勝手に判断してくれる場合と、してくれない場合とがある
+  - `NA_real_`: num型
+  - `NA_character`: chr型
+- 「欠損である」という条件を表す関数：`is.na()`
+  - 括弧内の値が欠損であるかどうかを返す: filterなどの条件に指定
+
+```{r}
+palmerpenguins::penguins %>% nrow() # 列数を返す
+palmerpenguins::penguins %>%
+  filter(!is.na(body_mass_g)) %>% # 体重が欠損している個体を除外
+  nrow() #上より列数が減っている
+```
+
+
+## 情報を絞る
+
+- 全ての列を必要としない場合：select関数を利用
+- 残したい列を順番に列挙するだけでOK。列番号でもよい
+- 落としたい列を-(マイナス)で指定してもよい
+
+```{r}
+df <- palmerpenguins::penguins %>%
+  dplyr::select(species, sex, 5, 6)
+
+print(df %>% head(4))
+```
+
+- 取り出した列をベクトルとして利用したい場合：`pull`関数で抜き出し可能
+
+
+## 新しい変数を作成する
+
+- 今ある情報を元に、新しい列を作成することがある：`mutate`関数を利用する
+  - 列の変数型が数値の場合: 四則演算の演算子をそのまま利用できる
+  - 特定の条件にあてはまるか否かを判定して数値を代入したい場合：`if_else`関数、`case_when`関数を利用
+
+```{r, eval=FALSE}
+df <- palmerpenguins::penguins %>%
+  mutate(
+    flipper_length_2 = flipper_length_mm^2, # 羽根の長さの2乗
+    weight_size = if_else(condition = body_mass_g >= 4050, true = "L", false = "F"),
+    flipper_size_3 = case_when(
+      body_mass_g <= 3550 ~ "S",
+      body_mass_g >= 3550 & body_mass_g <= 4750 ~ "M",
+      TRUE ~ "L" # TRUE はそれ以外
+    )
+  )
+```
+
+## 作成した変数を確認
+
+```{r, echo=FALSE}
+df <- palmerpenguins::penguins %>%
+  mutate(
+    flipper_length_2 = flipper_length_mm^2, # 羽根の長さの2乗
+    weight_size = if_else(condition = body_mass_g >= 4050, true = "L", false = "F"),
+    flipper_size_3 = case_when(
+      body_mass_g <= 3550 ~ "S",
+      body_mass_g >= 3550 & body_mass_g <= 4750 ~ "M",
+      TRUE ~ "L" # TRUE はそれ以外
+    )
+  ) %>%
+  select(1, 2, body_mass_g, 9:11)
+
+print(df)
+```
+
+## サンプルを分割する
+
+- サンプルを特定の変数の値ごとに分割したい時がある
+  - 例えば、オスのサンプルとメスのサンプルを分割する
+  - `filter`関数を使ってもいいが、例えば雄雌それぞれのサンプルに同じ操作を適用したい場合などは、コードが冗長になる場合がある
+  - `split`関数と`pull`関数を組み合わせて使うと、データフレームをリスト形式で分割できる
+  
+```{r}
+df_split <- palmerpenguins::penguins %>%
+  select(species, island, sex) %>% # 表示の都合上列数を限定
+  split(pull(., sex)) # 分割の基準にしたい変数を入力
+print(df_split)
+```
+
+
+## その他データ操作関連の関数
+
+- stringr, stringi パッケージは文字列の処理に便利
+  - 先頭から何文字、指定した条件に合致した文字を抜き出しなど、character型の文字列を操作するのに非常に便利
+
+## もっと便利な要約統計量
+
+## dplyr パッケージの利用
+
+- dplyr: tidyverseパッケージに含まれるデータ操作系の関数の一つ
+- `group_by` 関数は、以降の操作を指定した変数ごとに行うことを宣言する関数
+  - 例えば、`group_by(species)`とすると、以降の操作はペンギンの種類ごとに行われる
+- `summarise` 関数は、データフレームの指定された列を任意の関数で集計するための関数
+
+```{r}
+palmerpenguins::penguins %>%
+  summarise(
+    mean_bill_length_mm = mean(bill_length_mm, na.rm = T), # くちばしの長さの平均を取る、欠損値は除外
+    mean_flipper_length_mm = mean(flipper_length_mm, na.rm = T),
+    mean_body_mass_g = mean(body_mass_g, na.rm = T),
+  )
+```
+
+- 任意の統計量、変数を自由に選択肢して表を作ることができる
+
+## group_byを組み合わせる
+
+```{r}
+palmerpenguins::penguins %>%
+  group_by(species) %>% # 種類ごとに
+  summarise(
+    N = n(), # サンプルサイズ
+    mean_bill_length_mm = mean(bill_length_mm, na.rm = T), # くちばしの長さの平均を取る、欠損値は除外
+    mean_flipper_length_mm = mean(flipper_length_mm, na.rm = T),
+    mean_body_mass_g = mean(body_mass_g, na.rm = T),
+  )
+```
+
+- ペンギンの種類間での平均の比較が可能に
+
+## group_byを組み合わせる
+
+- 複数変数を指定してもOK
+
+```{r}
+palmerpenguins::penguins %>%
+  group_by(sex, species) %>% # 種類と性別ごとに
+  summarise(
+    N = n(),
+    mean_bill_length_mm = mean(bill_length_mm, na.rm = T), # くちばしの長さの平均を取る、欠損値は除外
+    mean_flipper_length_mm = mean(flipper_length_mm, na.rm = T),
+    mean_body_mass_g = mean(body_mass_g, na.rm = T),
+  )
+```
+
+- 同様に、標準偏差などを掲載すると良い
+
+## skimrパッケージの利用
+
+- skim関数は各行にデータセットのカラム(列)、各列に統計量を記載した扱いやすい記述統計量を作成してくれる
+
+```{r}
+library(skimr)
+descriptive <- palmerpenguins::penguins %>%
+  skim()
+print(descriptive)
+```
+
+## 質的変数と量的変数
+
+- `yank`関数：skimで要約した列のうち、特定の型を持つ値の要約のみを抜き出して記載する関数
+
+```{r}
+palmerpenguins::penguins %>%
+  skim() %>%
+  yank(., skim_type = "numeric") %>% # numeric型の要約統計量を表示
+  print()
+```
+
+## グループごとの統計量
+
+- skimにもgroup_by関数を適用可能
+
+```{r}
+sum <- palmerpenguins::penguins %>%
+  group_by(island) %>%
+  skim() %>%
+  yank(., skim_type = "numeric")
+
+sum %>%
+  filter(skim_variable == "bill_length_mm") %>%
+  filter(island %in% c('Biscoe', 'Dream')) %>%
+  select(skim_variable, island, complete_rate, mean, sd) # selectで必要な統計量だけ出す
+```
+
 # データの概観：可視化
 
 - データを可視化する：ggplot2パッケージの利用
 
+## データを可視化する
+
+- 前章では要約統計量を作成することでデータの概観を把握する方法を学習
+- しかし、変数の分布や二変数間の相関、時系列での数値の変化など、要約統計量だけでは捉えきれない性質も存在
+- データをグラフの形で可視化することで、分かりやすい・伝わりやすい数値化が可能
+- デフォルトで使用できるgraphicsパッケージは早くて便利だが、ggplot2パッケージならより詳細&手軽な操作で美しいグラフを描画できる
+
+```{r, out.width="50%", echo=FALSE, fig.align='center'}
+knitr::include_graphics("figs/Ohtani_spray_total.png")
+```
+
+## ggplotの記法
+
+- ggplot2パッケージの関数はやや特殊：たくさんの関数を「足し算」することでグラフに手を加えていく
+- `ggplot` 関数で台紙を作る：どのデータフレームを使って可視化するのかもここで宣言
+
+```{r, out.width="40%", fig.align='center'}
+df <- palmerpenguins::penguins
+ggplot2::ggplot(data = df) # この時点では白紙
+```
+
+## ggplotの記法 (cont'd)
+
+```{r, out.width="80%", echo=FALSE, fig.align='center'}
+knitr::include_graphics("figs/ggplot_fig.png")
+```
+
+
+## 図形の描画：軸の設定
+
+- 例として、ペンギンの体重のヒストグラムを作ろう：体重という1変数の分布を見る
+- `aes`関数を使い、グラフの横軸・縦軸や色分けの情報を加えていく
+  - 横軸: x, 縦軸: y, グループ分け: group, 色分け: colour, 塗りつぶし: shape, 形: shape あたりを覚えておく
+  - 今回はヒストグラムなので、「横軸が体重ですよ」という情報を渡してやればよい
+- その上で、ヒストグラムを描画する関数`geom_histogram`関数を加える
+
+## ヒストグラムの描画
+  
+```{r, out.width="50%", fig.align='center'}
+ggplot2::ggplot(data = df) +
+  aes(x = body_mass_g) +
+  geom_histogram()
+```
+
+## 細かな体裁の変更
+
+- グラフの
+
+## グループを分けて
+
 # 分析と結果の表示
 
 - 分析目的の設定
+- 2群間の比較：$t$検定
 - 最小二乗法
 - 最尤法
   - ロジスティック回帰
+- 分析の一例：CollegeDistanceデータを用いた分析
+  
+## 計量分析を行う
+
 
 # RMarkdownを用いたレポートの作成
 

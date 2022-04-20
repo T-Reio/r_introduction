@@ -9,6 +9,9 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(AER)
+library(estimatr)
+library(tidyverse)
 ```
 
 # 要旨
@@ -32,6 +35,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ## 使用データの説明
 
 どこから持ってきた何のデータか、パネル・時系列データなら期間はいつからいつまでのものか、実験・アンケートなら何月に実施したデータなのかを詳しく記載。アンケートの回答不備などで落とした後の最終的なサンプルサイズを記載。要約統計量を載せる。
+
+```{r, echo=FALSE}
+data("CollegeDistance")
+```
+
 
 ## 実証モデルの説明
 

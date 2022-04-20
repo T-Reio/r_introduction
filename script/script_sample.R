@@ -3,6 +3,7 @@
 #install.packages("AER")
 #install.packages("estimatr")
 #install.packages("huxtable")
+#install.packages("skimr")
 
 #でコメントアウトできる：実行しても無視されるので、メモ書きに使える
 
@@ -84,3 +85,13 @@ palmerpenguins::penguins %>% # パイプ演算子を使った記法
   write_csv("data/penguins.csv")
 
 df <- read_csv('data/penguins.csv') # 読み込み
+
+
+# データの要約-------------------
+
+summary(df)
+
+library(skimr)
+
+df %>%
+  skim()
