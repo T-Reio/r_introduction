@@ -13,9 +13,11 @@ output:
     reveal_options:
       menu:
         numbers: yes
+  pdf_document: 
+    latex_engine: lualatex
   powerpoint_presentation: default
-  beamer_presentation: default
   html_document: default
+documentclass: ltjsarticle
 ---
 
 ```{r setup, include=FALSE}
