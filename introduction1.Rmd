@@ -5,6 +5,8 @@ author:
 - Osaka Univ., Graduate School of Econ.
 date: "April, 2022"
 output:
+  pdf_document: 
+    latex_engine: lualatex
   revealjs::revealjs_presentation:
     self_contained: no
     theme: serif
@@ -13,8 +15,6 @@ output:
     reveal_options:
       menu:
         numbers: yes
-  pdf_document: 
-    latex_engine: lualatex
   powerpoint_presentation: default
   html_document: default
 documentclass: ltjsarticle
