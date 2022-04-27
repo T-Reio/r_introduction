@@ -25,22 +25,14 @@ library(tidyverse)
 library(AER)
 knitr::opts_chunk$set(echo = TRUE)
 ```
-# はじめに
-
-- このスライドはhtml形式で保存しています
-  - 左下のハンバーガーアイコンをクリックすると各ページに飛べます
-  - ただ、PC以外の方法で閲覧するのはちょっと不便
-- ファイルをpdfで保存することができます
-  - ブラウザURLの末尾の"\~html"の後ろに"?print-pdf"を付け、ページを印刷するとpdf形式で保存できます
-  - 紙に印刷して見たい、単純に見づらいからpdfで閲覧したいという方はどうぞ
   
-## 関係資料
+# 関係資料
 
 - このスライドを含めた資料は以下のURLからダウンロードできます
+  - [最新版のスライド](https://github.com/T-Reio/r_introduction/blob/main/introduction1.pdf)
   - [スクリプトのサンプル](https://raw.githubusercontent.com/T-Reio/r_introduction/main/script/script_sample.R)
   - 名前を付けて保存→ファイルの種類を「すべてのファイル」に変更して、末尾が「.R」で終わる名前にする
 - 適宜更新していく(予定)ので、たまにチェックしてみて下さい
-  - スライドは綺麗に上がらなかったので、来週分はまたSlack (山本先生経由) でお送りします
 
 ## 自己紹介
 
@@ -141,7 +133,7 @@ ggplot2::ggplot(df) +
 
 - 回帰分析などの統計手法による分析を行い、結果をまとめる
 
-$$\text{weight}_{i} = \text{flipperSize}_i + \text{Spiecies}_i + u_i$$
+$$\text{weight}_{i} = \alpha + \beta_1\text{flipperSize}_i + \beta_2 \text{Spiecies}_i + u_i$$
   
 ```{r, out.extra="70%", echo=FALSE}
 df %>%
@@ -1209,6 +1201,62 @@ ggsave(plot = pl, filename = "figs/plot_sample.png")
 knitr::include_graphics("figs/Ohtani_pitch_usage_byMonth.png")
 ```
 
+## 簡単な回帰分析
+
+- OLS(最小二乗法)で回帰分析を行う
+- 特に計量経済学において使用する回帰分析に必要なパッケージ：estimatr
+  - lm関数よりこちらを使用するようにする
+  - 残差の不均一分散に対応した頑健な標準誤差を計算
+- ここでは適切な分析手法やその内容について詳しく説明しないので、計量分析の教科書を1冊学習してみることをお勧めします
+  - [高橋 将宜, 『統計的因果推論の理論と実装』](https://www.kyoritsu-pub.co.jp/bookdetail/9784320112452)
+  - [Cunningham, 'Causal Inference the Mixtape'](https://mixtape.scunning.com/)
+  - [Huntington-Klein, 'The Effect: An Introduction to Research Design and Causality'](https://theeffectbook.net/)
+  
+## 回帰分析
+
+- 観測されたデータ$(y_i, X_i)$ for $i = 1, \ldots, N$について、
+$$y_i = \alpha + \beta X_i + u_i$$
+- という線形関係の予測モデルを推定する
+  - 独立変数$X_i$が変動した時に従属変数$y_i$がどれだけ変動するか：$y_i$の実現値の分散を$X_i$のそれがどれだけ説明するか を推定
+  - 関心があるのは独立変数の係数$\beta$
+- 例
+  - 高等教育を無償化すると、将来の賃金が何%上昇するか？
+  - 残業代アップと支払の厳格化は労働時間の削減に繋がるか？
+- 多くの問題には「内生性」の問題が生じるため、シンプルな回帰分析では推定が難しいことも多い
+  
+## 因果推論
+
+- 因果関係と相関関係の区別
+  - 感染症の流行で太った人が多い：感染症は肥満を引き起こすウイルス？
+  - 「人は話し方が9割」「人は聞き方が9割」：足したら18割だけど
+  - 「大学で勉強したことは役に立たない」：って上司が言ってた
+- 特に経済学や医療分野では「AがBの原因であること」が重要
+
+## 回帰分析の例
+
+- ペンギンのデータセットで分析
+- ペンギンの嘴の長さを予測するモデルを作ろう
+- 各個体$i$について
+$$\text{billSize}_{i} = \alpha + \beta_1\text{weight}_i + \beta_2 \text{Spiecies}_i + u_i$$
+  - でかいペンギンはくちばしもでかいのでは、ペンギンの種類でも関係がありそう
+  - 説明変数に体重と種類の情報を入れる
+  
+## lm_robust関数を用いた推定と結果の確認
+
+```{r}
+model <- df %>%
+  estimatr::lm_robust(formula = bill_length_mm ~ body_mass_g + species, data = .)
+summary(model)
+```
+
+## 係数の解釈
+
+- ではくちばしの長さは体重によって決まるのか？：直感的に考えてそうではない
+  - し、「体重がくちばしの長さを決める」ことが分かることはそこまで重要か？
+- ペンギンの体格に環境変異が影響している可能性は？
+  - 捕獲した島におけるエサの取りやすさやその他の環境要因が同じ種類のペンギンでも異なる淘汰を招いたのでは？
+- くちばしの予測に島を表すダミー変数を加えてみよう
+  
 # 分析と結果の表示
 
 - 分析目的の設定
@@ -1231,6 +1279,7 @@ $$y_{i} = \alpha + \beta X_i + u_i$$
 
 - 説明変数の係数を推定し、説明変数の限界的な変化が被説明変数に対してどれだけ影響するかを推定したい
 - ここでは、Rで利用できるパッケージを使って分析の一例を示す
+
 
 ## AERパッケージの導入
 
@@ -1271,8 +1320,6 @@ print(head(CollegeDistance))
 - その他、結果を出力するためのパッケージが色々あるので好きなのを使う
   - stargazer
   - modelsummary：最近知ったので勉強中、皆さんも勉強して教えて下さい
-  
-## まずはデータを確認
 
 
 # RMarkdownを用いたレポートの作成
