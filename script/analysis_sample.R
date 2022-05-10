@@ -30,7 +30,9 @@ CollegeDistance %>%
 
 saved <- huxtable(status_sum)
 
-quick_xlsx(saved, file = "tab/college_sum.xlsx")
+saved
+
+#quick_xlsx(saved, file = "tab/college_sum.xlsx")
 
 factor <- CollegeDistance %>% 
   skim() %>%
@@ -53,6 +55,19 @@ CollegeDistance %>%
       "高卒" = 2)) %>%
   kable_styling() %>%
   print()
+
+
+
+model1 <- CollegeDistance %>%
+  lm_robust(high_income ~ education, data = .)
+
+model2 <- CollegeDistance %>%
+  lm_robust(high_income ~ education + score, data = .)
+
+model3 <- CollegeDistance %>%
+  lm_robust(high_income ~ education + score + ethnicity, data = .)
+
+table <- huxreg(model1, model2, model3)
 
 CollegeDistance %>%
   lm_robust(formula = high_income ~ education + ethnicity + tuition + score, data = .) %>%

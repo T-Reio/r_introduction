@@ -44,7 +44,7 @@ CollegeDistance <- CollegeDistance %>%
   )
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE}
 CollegeDistance %>%
   group_by(univ) %>%
   summarise(
@@ -59,8 +59,11 @@ names <- c("$N$", "大学進学", "ヒスパニック (%)", "アフリカ系黒�
 status_sum %>%
   purrr::set_names(names) %>%
   ftExtra::as_flextable() %>%
-  flextable::colformat_num(digits = 1) 
+  flextable::colformat_num(digits = 1)
+```
+大卒とそれ以外との比較
 
+```{r}
 CollegeDistance %>%
   dplyr::group_by(univ) %>%
   skimr::skim() %>%
@@ -68,18 +71,15 @@ CollegeDistance %>%
   dplyr::select(skim_variable, univ, mean, sd) %>%
   tidyr::pivot_wider(names_from = univ, values_from = c('mean', 'sd')) %>%
   dplyr::select(1, 2, 4, 3, 5) %>%
-  kableExtra::kable(format = "html", 
+  kableExtra::kable(format = "simple", 
         booktabs = TRUE,
         col.names = c('変数', '平均', '標準偏差',
                       '平均', '標準偏差'),
         digits = 2) %>%
   kableExtra::add_header_above(
     c(" ", "大卒" = 2, 
-      "高卒" = 2)) %>%
-  kableExtra::kable_styling() %>%
-  print()
+      "高卒" = 2))
 ```
-
 
 
 ## 実証モデルの説明
@@ -91,6 +91,27 @@ $$y_{it} = \beta X_{it} + a_i + u_{it}$$
 # 結果
 
 実証モデルの推定結果を記述する
+
+```{r, echo=FALSE, warning=FALSE}
+data("CollegeDistance")
+CollegeDistance <- CollegeDistance %>%
+  mutate(
+    univ = if_else(education >= 16, "Yes", "No"),
+    high_income = if_else(income == "high", 1, 0),
+  )
+
+model1 <- CollegeDistance %>%
+  estimatr::lm_robust(high_income ~ education, data = .)
+model2 <- CollegeDistance %>%
+  estimatr::lm_robust(high_income ~ education + score, data = .)
+model3 <- CollegeDistance %>%
+  estimatr::lm_robust(high_income ~ education + score + ethnicity, data = .)
+
+table <- huxtable::huxreg(model1, model2, model3)
+
+table
+```
+
 
 # ディスカッション
 

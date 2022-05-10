@@ -1329,8 +1329,35 @@ print(head(CollegeDistance))
   
 ## stargazerパッケージ
 
+- html・latex形式でデータを出力
+- OLSはlm関数でないと出力できない(不均一分散に頑健な標準誤差が一発で表示できない)
 
 ## huxtableパッケージ
+
+```{r}
+CollegeDistance <- CollegeDistance %>%
+  mutate(
+    univ = if_else(education >= 16, "Yes", "No"),
+    high_income = if_else(income == "high", 1, 0),
+  )
+model1 <- CollegeDistance %>%
+  estimatr::lm_robust(high_income ~ education, data = .)
+model2 <- CollegeDistance %>%
+  estimatr::lm_robust(high_income ~ education + score, data = .)
+model3 <- CollegeDistance %>%
+  estimatr::lm_robust(high_income ~ education + score + ethnicity, data = .)
+
+table <- huxtable::huxreg(model1, model2, model3)
+```
+
+## huxtableの表示
+
+```{r, out.width="50%"}
+table %>%
+  knitr::knit_print()
+```
+
+
 
 ## modelsummaryパッケージ (要出典)
 
@@ -1369,7 +1396,8 @@ $$y_{it} = X_{it} \beta + \delta_i + \gamma_t + u_{it}$$
 ## DID
 
 - difference-in-difference (差の差) 分析
-- 例えば、
+- 処置群が介入を受けた前後の統制群・処置群両方のデータを取得することで、両者に共通の時間トレンドを考慮した介入効果の推定を行う
+  - パラレルトレンドの仮定(経時的な影響は両群に共通)など、やや強い仮定が必要
 
 # RMarkdownを用いたレポートの作成
 
