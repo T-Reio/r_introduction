@@ -32,8 +32,9 @@ value + 10
 
 vec <- c(1192, 2960)
 vec * 2
-
-seq(1, 10, 2) #規則性のあるベクトルを作成
+c(1, 3, 5, 7, 9)
+seq(1, 100, 2) #規則性のあるベクトルを作成
+1:30
 rep(0, 10)
 
 ### パッケージインストール
@@ -68,6 +69,9 @@ listA[[1]] # リストの中の1つ目の要素だけ出してくる
 log(x = 100, base = 10) # 100の対数、底10で計算
 log(x = 100, base = 5) # 底を5に変更
 
+log(100, 10)
+log(base = 100, x = 10)
+
 values <- c(1:5, rep(3, 10), 4:10) #1, 2, ..., 5, 3, 3, ... 
 mean(values) # ベクトルの平均を計算
 sd(values)
@@ -75,7 +79,7 @@ sd(values)
 ### 図形を描画する関数
 
 graphics::plot(x = -5:5, y = (-5:5)^2, pch = 19, col = "magenta")
-
+plot(x = -5:5, y = (-5:5)^2, pch = 19, col = "magenta")
 
 domain <- seq(-5, 5, .05) # ベクトルをオブジェクトに定義してから使うこともできる
 graphics::plot(x = domain, y = domain^2, pch = 19, col = "magenta")
@@ -90,12 +94,22 @@ graphics::plot(x = domain, y = .5 * domain + 4, pch = 19, col = "blue")
 
 # パイプ演算子
 
+mean(1:10)
+
+1:10 %>%
+  mean()
+
 1:10 %>% # ベクトルを作る、これが直後の関数で操作される
   mean() %>% # 平均を求める
   print()
 
+#install.packages("palmerpenguins")
 library(palmerpenguins)
 
+df <- penguins
+
+head(df, 3)
+tail(df)
 
 penguin_df <- palmerpenguins::penguins
 write_excel_csv(penguin_df, file = "data/penguins.csv")
@@ -215,3 +229,10 @@ sum %>%
 
 # ggplotの可視化
 
+mean(1:10)
+1:10 %>%
+  mean(x = .)
+
+1:10 %>% # ベクトルを作る、これが直後の関数で操作される
+  mean() %>% # 平均を求める
+  print() 
