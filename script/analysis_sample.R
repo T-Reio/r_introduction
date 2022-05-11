@@ -6,6 +6,8 @@ library(huxtable)
 library(kableExtra)
 library(ftExtra)
 library(modelsummary)
+library(knitr)
+library(revealjs)
 
 
 # データの読み込み----------------
@@ -38,9 +40,9 @@ CollegeDistance %>%
 
 ## huxtableパッケージを使ってデータフレームをExcelファイルに
 
-saved <- huxtable(status_sum)
+summary_table <- huxtable(status_sum)
 
-saved
+summary_table
 
 #quick_xlsx(saved, file = "tab/college_sum.xlsx")
 
@@ -101,7 +103,7 @@ model3 <- CollegeDistance %>%
 huxreg(model1, model2, model3)
 
 
-table <- huxreg(
+table <- huxreg( # 回帰式を
   model1, model2, model3,
   statistics = c(
     '# observations' = 'nobs', 'R squared' = 'r.squared',
@@ -113,25 +115,55 @@ table <- huxreg(
 
 table
 
-#quick_pptx(table, file = "tab/college_sum.pptx")
+#quick_pptx(table, file = "tab/college_regression.pptx") # quick_〇〇関数で保存
 
-# ロジスティック回帰
+
+## modelsummary
+
+table_list <- list("(1)" = model1, "(2)" = model2, "(3)" = model3)
+
+msummary(table_list)
+msummary(table_list, output = "tab/college_reg.pptx")
+
+tab <- msummary(table_list, output = "huxtable") # huxtableでの出力を嚙ませればexcelにも出力可能
+quick_xlsx(tab, file = "tab/college_reg.xlsx")
+
+msummary(table_list)
+
+# ロジスティック回帰---------------------------
 
 logit <- glm(formula = high_income ~ education + distance + ethnicity, data = CollegeDistance, family = binomial(link = "logit"))
+probit <- glm(formula = high_income ~ education + distance + ethnicity, data = CollegeDistance, family = binomial(link = "probit"))
 summary(logit)
 
 huxreg(logit)
 
 logit$coefficients
 
-CollegeDistance %>%
-  lm_robust(formula = high_income ~ education + ethnicity + tuition + score, data = .) %>%
-  summary()
+fitted_values <- predict(logit, type = 'link') # 推定したモデルでの予測値(X_i \beta)
 
-CollegeDistance %>%
-  lm_robust(formula = education ~ distance, data = .) %>%
-  summary()
+avgPred <- mean(exp(fitted_values) / (1 - exp(fitted_values)))
+AME <- avgPred * coef(logit)
+AME
 
-CollegeDistance %>%
-  iv_robust(formula = high_income ~ education | distance + ethnicity + tuition + score, data = .) %>%
-  summary()
+fitted_values <- predict(probit, type = 'link') # 推定したモデルでの予測値(X_i \beta)
+
+avgPred <- mean(dnorm(fitted_values))
+AME <- avgPred * coef(probit)
+AME
+
+# 操作変数法-------------------------
+
+# distance: 教育年数
+
+model4 <- CollegeDistance %>%
+  iv_robust(formula = high_income ~ education | distance, data = .)
+
+model5 <- CollegeDistance %>%
+  iv_robust(formula = high_income ~ education | distance + ethnicity + tuition + score, data = .)
+
+table_list <- list("(1)" = model4, "(2)" = model5, "OLS" = model3)
+
+msummary(table_list)
+
+tidy(model4)

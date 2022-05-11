@@ -63,7 +63,7 @@ status_sum %>%
 ```
 大卒とそれ以外との比較
 
-```{r}
+```{r, echo=FALSE, warning=FALSE}
 CollegeDistance %>%
   dplyr::group_by(univ) %>%
   skimr::skim() %>%
@@ -111,6 +111,21 @@ table <- huxtable::huxreg(model1, model2, model3)
 
 table
 ```
+
+- 操作変数法との比較
+
+```{r, echo=FALSE, warning=FALSE}
+model4 <- CollegeDistance %>%
+  iv_robust(formula = high_income ~ education | distance, data = .)
+
+model5 <- CollegeDistance %>%
+  iv_robust(formula = high_income ~ education | distance + ethnicity + tuition + score, data = .)
+
+table_list <- list("(1)" = model4, "(2)" = model5, "OLS" = model3)
+
+modelsummary::msummary(table_list)
+```
+
 
 
 # ディスカッション
