@@ -32,6 +32,7 @@ knitr::opts_chunk$set(echo = TRUE)
   - [最新版のスライド](https://github.com/T-Reio/r_introduction/blob/main/introduction1.pdf)
   - [スクリプトのサンプル](https://raw.githubusercontent.com/T-Reio/r_introduction/main/script/script_sample.R)
   - 名前を付けて保存→ファイルの種類を「すべてのファイル」に変更して、末尾が「.R」で終わる名前にする
+  - [分析用のサンプルコード](https://github.com/T-Reio/r_introduction/blob/main/script/analysis_sample.R)を追加しました。
 - 適宜更新していく(予定)ので、たまにチェックしてみて下さい
 
 ## 自己紹介
@@ -1518,7 +1519,9 @@ $$\log w_i = \alpha + \beta x_i + u_i$$
   
 ## rmarkdownファイルをいじってみる
 
-- [リンク]()からマークダウンファイルをダウンロード、開いてみる
+- [リンク](https://raw.githubusercontent.com/T-Reio/r_introduction/main/rmarkdown_to_docx.Rmd)からマークダウンファイルをダウンロード、開く
+- knitrパッケージがあれば動かせるはずです
+  - knit: Ctrl + Shift + K
 
 
 # おまけ：バージョン管理

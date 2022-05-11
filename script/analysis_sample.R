@@ -8,6 +8,7 @@ library(ftExtra)
 library(modelsummary)
 library(knitr)
 library(revealjs)
+library(palmerpenguins)
 
 
 # データの読み込み----------------
@@ -130,6 +131,28 @@ quick_xlsx(tab, file = "tab/college_reg.xlsx")
 
 msummary(table_list)
 
+gof_map
+
+gof_shown <- tribble(
+  ~raw,        ~clean,          ~fmt,
+  "nobs",      "N",             0,
+  "r.squared", "R2", 2,
+  "adj.r.squared", "adj. R2", 2,
+  "statistic", "F", 3,
+  )
+
+msummary(
+  table_list,
+  gof_map = gof_shown,
+  escape = FALSE
+)
+
+# 固定効果モデル ------------------------------
+
+penguins %>%
+  lm_robust(body_mass_g ~ flipper_length_mm + sex, fixed_effects = island + species, data = .) %>%
+  summary()
+
 # ロジスティック回帰---------------------------
 
 logit <- glm(formula = high_income ~ education + distance + ethnicity, data = CollegeDistance, family = binomial(link = "logit"))
@@ -162,8 +185,21 @@ model4 <- CollegeDistance %>%
 model5 <- CollegeDistance %>%
   iv_robust(formula = high_income ~ education | distance + ethnicity + tuition + score, data = .)
 
-table_list <- list("(1)" = model4, "(2)" = model5, "OLS" = model3)
+table_list2 <- list("(1)" = model4, "(2)" = model5, "OLS" = model3)
 
-msummary(table_list)
+msummary(table_list2)
 
-tidy(model4)
+gof_shown <- tribble(
+  ~raw,        ~clean,          ~fmt,
+  "nobs",      "N",             0,
+  "r.squared", "R2", 2,
+  "adj.r.squared", "adj. R2", 2,
+  "statistic", "F-value", 2,
+  "statistic.Weak.instrument", "Weak IV", 2
+)
+
+msummary(
+  table_list2,
+  gof_map = gof_shown,
+  escape = FALSE
+)
