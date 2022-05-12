@@ -15,9 +15,9 @@ library(palmerpenguins)
 
 data("CollegeDistance")
 
-#View(CollegeDistance)
+View(CollegeDistance)
 
-#CollegeDistance$ethnicity %>% unique() # その列に含まれる要素を表示
+CollegeDistance$ethnicity %>% unique() # その列に含まれる要素を表示
 
 CollegeDistance <- CollegeDistance %>%
   mutate(
@@ -45,7 +45,7 @@ summary_table <- huxtable(status_sum)
 
 summary_table
 
-#quick_xlsx(saved, file = "tab/college_sum.xlsx")
+#quick_xlsx(summary_table, file = "college_sum.xlsx")
 
 ## t検定
 
@@ -99,6 +99,8 @@ model2 <- CollegeDistance %>%
 model3 <- CollegeDistance %>%
   lm_robust(high_income ~ education + score + ethnicity, data = .)
 
+summary(model3)
+
 ## huxtableを使った出力
 
 huxreg(model1, model2, model3)
@@ -116,7 +118,7 @@ table <- huxreg( # 回帰式を
 
 table
 
-#quick_pptx(table, file = "tab/college_regression.pptx") # quick_〇〇関数で保存
+quick_pptx(table, file = "tab/college_regression.pptx") # quick_〇〇関数で保存
 
 
 ## modelsummary
@@ -124,7 +126,7 @@ table
 table_list <- list("(1)" = model1, "(2)" = model2, "(3)" = model3)
 
 msummary(table_list)
-msummary(table_list, output = "tab/college_reg.pptx")
+msummary(table_list, output = "tab/college_reg.docx")
 
 tab <- msummary(table_list, output = "huxtable") # huxtableでの出力を嚙ませればexcelにも出力可能
 quick_xlsx(tab, file = "tab/college_reg.xlsx")

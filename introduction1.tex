@@ -108,6 +108,30 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{array}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[normalem]{ulem}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{calc}
+\usepackage{tabularx}
+\usepackage{threeparttable}
+\usepackage{wrapfig}
+\usepackage{adjustbox}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\newcolumntype{d}{S[input-symbols = ()]}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttablex}
+\usepackage{makecell}
+\usepackage{xcolor}
 \ifluatex
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -135,6 +159,8 @@
     \href{https://raw.githubusercontent.com/T-Reio/r_introduction/main/script/script_sample.R}{スクリプトのサンプル}
   \item
     名前を付けて保存→ファイルの種類を「すべてのファイル」に変更して、末尾が「.R」で終わる名前にする
+  \item
+    \href{https://github.com/T-Reio/r_introduction/blob/main/script/analysis_sample.R}{分析用のサンプルコード}を追加しました。
   \end{itemize}
 \item
   適宜更新していく(予定)ので、たまにチェックしてみて下さい
@@ -3122,32 +3148,24 @@ bill\_length\_mm & Dream & 1.00 & 44.17 & 5.95 \\
 \begin{itemize}
 \tightlist
 \item
-  分析目的の設定
+  最小二乗法と結果の表示
 \item
-  分析の一例：CollegeDistanceデータを用いた分析
+  分析手法の設定
 
   \begin{itemize}
   \tightlist
   \item
-    2群間の比較：\(t\)検定
+    固定効果モデル
   \item
-    最小二乗法
-  \item
-    操作変数法
-  \end{itemize}
-\item
-  その他の分析方法
-
-  \begin{itemize}
-  \tightlist
-  \item
-    最尤法
+    一般化線形モデル、最尤法
 
     \begin{itemize}
     \tightlist
     \item
       ロジスティック回帰
     \end{itemize}
+  \item
+    操作変数法
   \item
     DID (差の差分析)
   \item
@@ -3284,8 +3302,600 @@ bill\_length\_mm & Dream & 1.00 & 44.17 & 5.95 \\
   \end{itemize}
 \end{itemize}
 
-\hypertarget{section}{%
-\subsection{}\label{section}}
+\hypertarget{ux56deux5e30ux5206ux6790ux306eux7d50ux679cux306eux8868ux793a}{%
+\subsection{回帰分析の結果の表示}\label{ux56deux5e30ux5206ux6790ux306eux7d50ux679cux306eux8868ux793a}}
+
+\begin{itemize}
+\tightlist
+\item
+  回帰分析の結果を表に出力する
+
+  \begin{itemize}
+  \tightlist
+  \item
+    複数の計量モデルや説明変数・固定効果の変更が推定結果に及ぼす形を比較できるような出力が必要
+  \end{itemize}
+\item
+  summary関数の出力結果をスクショ・コピペしてそのままスライドや論文に貼る→罰金
+
+  \begin{itemize}
+  \tightlist
+  \item
+    見映えが悪いし、コピペするよりは適切なコードを覚える方が労力が少なくて済む
+  \item
+    結果をExcelやパワーポイントに直接出力する
+  \end{itemize}
+\item
+  huxtable, ftExtra,
+  kableExtraパッケージが表出力全般に長けているのでこれらを利用する
+\end{itemize}
+
+\hypertarget{stargazerux30d1ux30c3ux30b1ux30fcux30b8}{%
+\subsection{stargazerパッケージ}\label{stargazerux30d1ux30c3ux30b1ux30fcux30b8}}
+
+\begin{itemize}
+\tightlist
+\item
+  html・latex形式でデータを出力
+\item
+  OLSはlm関数でないと出力できない(不均一分散に頑健な標準誤差が一発で表示できない)
+\item
+  色々方法はあるが、パッケージの更新が止まっていて新しい出力形式が使えないことや、そもそも出力がWordなどでの報告と相性が良くないなどの理由から非推奨
+
+  \begin{itemize}
+  \tightlist
+  \item
+    html出力してスクショなどすれば一応綺麗な形で出力はできる
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{huxtableux30d1ux30c3ux30b1ux30fcux30b8}{%
+\subsection{huxtableパッケージ}\label{huxtableux30d1ux30c3ux30b1ux30fcux30b8}}
+
+\begin{itemize}
+\tightlist
+\item
+  htmlをはじめとした様々な表出力に対応
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CollegeDistance }\OtherTok{\textless{}{-}}\NormalTok{ CollegeDistance }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{univ =} \FunctionTok{if\_else}\NormalTok{(education }\SpecialCharTok{\textgreater{}=} \DecValTok{16}\NormalTok{, }\StringTok{"Yes"}\NormalTok{, }\StringTok{"No"}\NormalTok{),}
+    \AttributeTok{high\_income =} \FunctionTok{if\_else}\NormalTok{(income }\SpecialCharTok{==} \StringTok{"high"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+\NormalTok{  )}
+\NormalTok{model1 }\OtherTok{\textless{}{-}}\NormalTok{ CollegeDistance }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  estimatr}\SpecialCharTok{::}\FunctionTok{lm\_robust}\NormalTok{(high\_income }\SpecialCharTok{\textasciitilde{}}\NormalTok{ education, }\AttributeTok{data =}\NormalTok{ .)}
+\NormalTok{model2 }\OtherTok{\textless{}{-}}\NormalTok{ CollegeDistance }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  estimatr}\SpecialCharTok{::}\FunctionTok{lm\_robust}\NormalTok{(high\_income }\SpecialCharTok{\textasciitilde{}}\NormalTok{ education }\SpecialCharTok{+}\NormalTok{ score, }\AttributeTok{data =}\NormalTok{ .)}
+\NormalTok{model3 }\OtherTok{\textless{}{-}}\NormalTok{ CollegeDistance }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  estimatr}\SpecialCharTok{::}\FunctionTok{lm\_robust}\NormalTok{(high\_income }\SpecialCharTok{\textasciitilde{}}\NormalTok{ education }\SpecialCharTok{+}\NormalTok{ score }\SpecialCharTok{+}\NormalTok{ ethnicity, }\AttributeTok{data =}\NormalTok{ .)}
+
+\NormalTok{table }\OtherTok{\textless{}{-}}\NormalTok{ huxtable}\SpecialCharTok{::}\FunctionTok{huxreg}\NormalTok{(model1, model2, model3)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{huxtableux306eux8868ux793a}{%
+\subsection{huxtableの表示}\label{huxtableux306eux8868ux793a}}
+
+ 
+  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
+  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
+  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
+  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
+
+\begin{table}[ht]
+\begin{centerbox}
+\begin{threeparttable}
+ \label{tab:unnamed-chunk-72}
+\setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l l}
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0}}c!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt}  \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} (1) \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} (2) \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{c!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\centering \hspace{6pt} (3) \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{255, 255, 255}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} (Intercept) \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} -0.478 *** \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} -0.578 *** \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} -0.422 *** \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt}  \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} (0.050)\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} (0.052)\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} (0.055)\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} education \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.055 *** \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.044 *** \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.047 *** \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt}  \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} (0.004)\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} (0.004)\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} (0.004)\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} score \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.005 *** \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.002 *\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt}  \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} (0.001)\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} (0.001)\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} ethnicityafam \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} -0.118 *** \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt}  \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} (0.018)\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} ethnicityhispanic \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} -0.155 *** \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt}  \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} \hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} (0.016)\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{255, 255, 255}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}->{\huxb{0, 0, 0}{0.4}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} N \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 4739\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 4739\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 4739\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} R2 \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.048\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.055\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} 0.075\hphantom{0}\hphantom{0}\hphantom{0}\hphantom{0} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{4}{!{\huxvb{0, 0, 0}{0}}l!{\huxvb{0, 0, 0}{0}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt}  *** p $<$ 0.001;  ** p $<$ 0.01;  * p $<$ 0.05. \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{}
+\arrayrulecolor{black}
+\end{tabular}
+\end{threeparttable}\par\end{centerbox}
+
+\end{table}
+ 
+
+\hypertarget{ux51faux529bux306eux4fddux5b58}{%
+\subsection{出力の保存}\label{ux51faux529bux306eux4fddux5b58}}
+
+\begin{itemize}
+\tightlist
+\item
+  huxtable,
+  huxregで作った表は、\texttt{quick\_(ファイル形式)}関数で保存することができる
+\item
+  ファイル名
+\end{itemize}
+
+\hypertarget{modelsummaryux30d1ux30c3ux30b1ux30fcux30b8-ux8981ux51faux5178}{%
+\subsection{modelsummaryパッケージ
+(要出典)}\label{modelsummaryux30d1ux30c3ux30b1ux30fcux30b8-ux8981ux51faux5178}}
+
+\begin{itemize}
+\tightlist
+\item
+  べんきょうちゅうです、適宜追加します
+\item
+  \href{https://keita43a.hatenablog.com/entry/2020/05/29/210250}{ここのサイト}にざっと使い方が書いてあります
+\item
+  同じく、回帰分析の結果を様々なデータ形式、あるいは他のパッケージで可視化に利用するデータ型に変換して出力できる
+
+  \begin{itemize}
+  \tightlist
+  \item
+    新たな行の付け足しなども比較的容易にできる
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{modelsummary}{%
+\subsection{modelsummary}\label{modelsummary}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table\_list }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\StringTok{"(1)"} \OtherTok{=}\NormalTok{ model1, }\StringTok{"(2)"} \OtherTok{=}\NormalTok{ model2, }\StringTok{"(3)"} \OtherTok{=}\NormalTok{ model3) }\CommentTok{\# リスト形式で回帰の結果を保存}
+
+\NormalTok{modelsummary}\SpecialCharTok{::}\FunctionTok{msummary}\NormalTok{(table\_list) }\CommentTok{\# msummary関数で一撃}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lccc}
+\toprule
+  & (1) & (2) & (3)\\
+\midrule
+(Intercept) & \num{-0.478} & \num{-0.578} & \num{-0.422}\\
+ & (\num{0.050}) & (\num{0.052}) & (\num{0.055})\\
+education & \num{0.055} & \num{0.044} & \num{0.047}\\
+ & (\num{0.004}) & (\num{0.004}) & (\num{0.004})\\
+score &  & \num{0.005} & \num{0.002}\\
+ &  & (\num{0.001}) & (\num{0.001})\\
+ethnicityafam &  &  & \num{-0.118}\\
+ &  &  & (\num{0.018})\\
+ethnicityhispanic &  &  & \num{-0.155}\\
+ &  &  & (\num{0.016})\\
+\midrule
+Num.Obs. & \num{4739} & \num{4739} & \num{4739}\\
+R2 & \num{0.048} & \num{0.055} & \num{0.075}\\
+R2 Adj. & \num{0.048} & \num{0.055} & \num{0.074}\\
+Std.Errors & HC2 & HC2 & HC2\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\hypertarget{ux30e2ux30c7ux30ebux9078ux629e}{%
+\subsection{モデル選択}\label{ux30e2ux30c7ux30ebux9078ux629e}}
+
+\begin{itemize}
+\tightlist
+\item
+  OLS
+  (一般的な重回帰分析)で因果推論を行うには、試したい処置がランダムに割り振られている、という仮定が必要
+
+  \begin{itemize}
+  \tightlist
+  \item
+    実験室実験：コントロール群と介入群をランダムに割り振ることが可能
+  \item
+    フィールド実験：一部抜け漏れや逸脱行動(処置を受ける群に割り当てられたが拒否することができるなど)がある
+  \item
+    その他、システム上ランダムに割り振られる違いを利用して比較を行う場合もある：MLBの審判員は、特定のチームや選手に偏ることなく(あるいは無関係に)ほぼランダムな形で割り振られる
+  \end{itemize}
+\item
+  そうではない場合、因果関係の存在を示すための適切な実証方法を利用する必要がある
+\end{itemize}
+
+\hypertarget{ux9069ux5207ux306aux30e2ux30c7ux30ebux306eux9078ux629e}{%
+\subsection{適切なモデルの選択}\label{ux9069ux5207ux306aux30e2ux30c7ux30ebux306eux9078ux629e}}
+
+\begin{itemize}
+\tightlist
+\item
+  固定効果モデル：パネルデータ分析(同一人物の複数期間にわたるデータが取得されている場合)
+\item
+  一般化線形モデル、最尤法
+  (被説明変数が制限されている場合：制限従属変数など)
+\item
+  DID (処置群と統制群の前後比較を行う)
+\item
+  操作変数法：説明変数に内生性がある場合
+\item
+  回帰不連続デザイン(RDD)：閾値の前後で不連続に処置が変わるようなシステムを利用する
+\end{itemize}
+
+\hypertarget{ux56faux5b9aux52b9ux679cux30e2ux30c7ux30eb}{%
+\subsection{固定効果モデル}\label{ux56faux5b9aux52b9ux679cux30e2ux30c7ux30eb}}
+
+\begin{itemize}
+\tightlist
+\item
+  パネルデータ：個人\(i = 1, \cdots, I\)について、複数期間\(t = 1, \cdots, T\)にわたる観測データが得られる場合
+\end{itemize}
+
+\[y_{it} = X_{it} \beta + \delta_i + \gamma_t + u_{it}\]
+
+\begin{itemize}
+\tightlist
+\item
+  個々人・時間の効果を取り除いた上で、関心のある変数\(X_{it}\)の変化に対する反応を見る
+
+  \begin{itemize}
+  \tightlist
+  \item
+    本質的にはグループごとのダミー変数を入れるのと同じ
+  \item
+    個々の係数には注目しない場合が多いので、実際に表示する結果の表には「個人レベルの固定効果を取り除きました」などと載せておけばOK
+  \end{itemize}
+\item
+  lm\_robust関数を利用して推定可能
+
+  \begin{itemize}
+  \tightlist
+  \item
+    fixed\_effectsオプションに固定効果として制御する
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{ux4e00ux822cux5316ux7ddaux5f62ux30e2ux30c7ux30eb}{%
+\subsection{一般化線形モデル}\label{ux4e00ux822cux5316ux7ddaux5f62ux30e2ux30c7ux30eb}}
+
+\begin{itemize}
+\tightlist
+\item
+  観測されたデータに対して、最も当てはまりが良い(尤もらしい)パラメータを選択する
+\item
+  OLSと同様の回帰分析においても利用可能であるが、ここでは被説明変数が0,1の二値変数である場合に利用する「ロジスティック回帰」を紹介
+
+  \begin{itemize}
+  \tightlist
+  \item
+    その他、被説明変数が幸福度など段階のある離散の変数として観測される場合に使う「順序ロジット・プロビットモデル」、一定の値を超えないと値そのものが観測されない「トービットモデル」など様々なモデルが利用できる
+  \item
+    OLSよりも残差の分布などについてやや強い仮定を用いる
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{ux30edux30b8ux30b9ux30c6ux30a3ux30c3ux30afux56deux5e30}{%
+\subsection{ロジスティック回帰}\label{ux30edux30b8ux30b9ux30c6ux30a3ux30c3ux30afux56deux5e30}}
+
+\begin{itemize}
+\tightlist
+\item
+  データから観察できない被説明変数\(y^*_i\)が存在しており、これが説明変数\(x_i\)を含むモデル\(y^*_i = x_i \beta + e_i\)で定まる
+\item
+  \(y^*_i\)が特定の値(便宜上ゼロ)を超えた時に従属変数\(y_i = 1\),
+  そうでないときに\(y_i = 0\)が観測される
+\item
+  \(x_i\)が決まった時、\(y_i = 1\)が観測される条件付確率は、\(e_i\)の分布関数\(F(.)\)によって決まる
+
+  \begin{itemize}
+  \tightlist
+  \item
+    この分布関数にロジスティック分布を仮定するのがロジスティック回帰、正規分布を仮定するのがプロビット回帰
+  \item
+    ロジスティック分布の方が計算上扱いやすいのでこちらが使われてきたが、コンピュータの発達により、近年はどちらも計算速度が変わらないと言われる
+  \end{itemize}
+\end{itemize}
+
+\[F(-x_i \beta) =  \dfrac{\exp(-x_i\beta)}{1 - \exp(-x_i\beta)}\]
+
+\begin{itemize}
+\tightlist
+\item
+  データと\(e_i\)に関する分布形の仮定を元に、実際の選択行動を最もよく説明するようなパラメータ\(\beta\)を探す：最尤法による推定
+\item
+  glm関数で推定可能
+\end{itemize}
+
+\hypertarget{ux9650ux754cux52b9ux679c}{%
+\subsection{限界効果}\label{ux9650ux754cux52b9ux679c}}
+
+\begin{itemize}
+\tightlist
+\item
+  先にある通り、ロジスティック回帰、プロビット回帰で推定された係数\(\beta\)は、観測される従属変数\(y_i\)に対する直接の効果ではない
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(x_i\)の値が変動した時に、被説明変数がどれぐらい変化するのかを表示するのが一般的
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{did}{%
+\subsection{DID}\label{did}}
+
+\begin{itemize}
+\tightlist
+\item
+  difference-in-difference (差の差) 分析
+\item
+  処置群が介入を受けた前後の統制群・処置群両方のデータを取得することで、両者に共通の時間トレンドを考慮した介入効果の推定を行う
+
+  \begin{itemize}
+  \tightlist
+  \item
+    処置群は検証したい介入の影響に加えて、時間の変化や全国一律の制度変更など、様々な効果を受ける：こうした「それ以外の影響」について、統制群と処置群とが受けた影響が同一であるなら、両者の差分を出すことによって介入の純粋な効果を推定できるのでは、というのがアイデア
+  \item
+    一般的には3期間以上の長期間、3単位以上の個人などにわたる観測データを利用することが多い
+  \item
+    パラレルトレンドの仮定(経時的な影響は両群に共通)など、やや強い仮定が必要
+  \end{itemize}
+\end{itemize}
+
+\[y_{it} = \beta \text{Treated}_{i} \times \text{After}_{t} + \gamma X_i + \alpha_i + \delta_t + u_i\]
+
+\hypertarget{ux64cdux4f5cux5909ux6570ux6cd5}{%
+\subsection{操作変数法}\label{ux64cdux4f5cux5909ux6570ux6cd5}}
+
+\begin{itemize}
+\tightlist
+\item
+  一般的なOLSが孕む最大の問題である内生性の問題に対処
+\item
+  データからは観測できない何らかの要因が存在し、それが被説明変数に対して影響を及ぼしている場合
+\item
+  例：教育年数と賃金との関係
+\end{itemize}
+
+\[\log w_i = \alpha + \beta x_i + u_i\]
+
+\begin{itemize}
+\tightlist
+\item
+  教育年数が長くなる：進学すれば賃金が上昇する？
+
+  \begin{itemize}
+  \tightlist
+  \item
+    データから観測できない変数：個人の能力\(A_i\)
+  \item
+    教育を長く受けることが賃金を上げるのではなく、そもそも稼得能力の高い、才能のある個人が進学を選択しているだけ？
+  \item
+    例えば「高等教育を無償化してこれまで進学していなかった人に教育の機会を与える」という政策の是非を問う上で、こうした問題は無視できない
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{ux64cdux4f5cux5909ux6570ux6cd5ux306eux767aux60f3}{%
+\subsection{操作変数法の発想}\label{ux64cdux4f5cux5909ux6570ux6cd5ux306eux767aux60f3}}
+
+\begin{itemize}
+\tightlist
+\item
+  Angrist and Kruger
+  の発想：\(x_i\)には関係するが、\(w_i\)には直接関係しないような変数を探してきて、これをコントロールしよう
+
+  \begin{itemize}
+  \tightlist
+  \item
+    このような変数\(z_i\)を操作変数 (instrumental variable)と呼ぶ
+  \end{itemize}
+\item
+  二段階最小二乗法による推定で、先の内生性の問題を解決できる
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    操作変数\(z_i\)で\(x_i\)を回帰し、予測値\(\hat{x}_i\)を得る
+  \item
+    \(\hat{x}_i\)と\(z_i\)で\(y_i\)を回帰する
+  \end{enumerate}
+\item
+  直感的には、「\(x_i\)が大きくなりやすい人」を探してその影響をコントロールするということ
+
+  \begin{itemize}
+  \tightlist
+  \item
+    教育年数→賃金：最寄りの大学までの距離
+  \item
+    ソーシャルキャピタル→幸福度：幼少期に近くに神社などがあったか否か
+  \item
+    価格→需要量：その財のコストにかかわる変化
+  \end{itemize}
+\item
+  実装
+
+  \begin{itemize}
+  \tightlist
+  \item
+    AERパッケージにある\texttt{ivreg}関数は操作変数法による回帰を行う方法
+  \item
+    estimatrパッケージの\texttt{iv\_robust}関数は\texttt{lm\_robust}と同様に使える
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{ux56deux5e30ux4e0dux9023ux7d9aux30c7ux30b6ux30a4ux30f3}{%
+\subsection{回帰不連続デザイン}\label{ux56deux5e30ux4e0dux9023ux7d9aux30c7ux30b6ux30a4ux30f3}}
+
+\begin{itemize}
+\tightlist
+\item
+  操作変数と同様、内生性のある問題を部分的に解決するアプローチの一つ
+\item
+  ある処置を受けられるかどうかを決めるシステム (assignment
+  rule)の不連続な切れ目に注目し、その切れ目の前後を比較することで処置効果を推定する
+
+  \begin{itemize}
+  \tightlist
+  \item
+    大学教育の効果：入試の合格最低点周りの集団は、合格した人も不合格だった人もほぼ同じような能力を持った人と言える
+  \item
+    医療費の自己負担割合：特定の年齢に到達すると負担割合が不連続に下がる
+  \item
+    プロ野球選手の身長
+  \end{itemize}
+\item
+  切れ目の「前後」とはどこからどこまでを指すのか？：対象とする観測の設定など、独特な推定・分析が必要になる
+\item
+  rdrobustパッケージなど、推定を行うにあたって必要な分析を行うパッケージが公開されている
+\end{itemize}
+
+\hypertarget{ux30c6ux30fcux30deux63a2ux3057ux3068ux4e26ux884cux3057ux3066ux305cux3072ux53d6ux308aux7d44ux3093ux3067ux307bux3057ux3044ux66f8ux7c4d}{%
+\subsection{テーマ探しと並行してぜひ取り組んでほしい書籍}\label{ux30c6ux30fcux30deux63a2ux3057ux3068ux4e26ux884cux3057ux3066ux305cux3072ux53d6ux308aux7d44ux3093ux3067ux307bux3057ux3044ux66f8ux7c4d}}
+
+\begin{itemize}
+\tightlist
+\item
+  Rの基本操作
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://gihyo.jp/book/2021/978-4-297-12170-9}{松村 et al.,
+    『RユーザのためのRStudio {[}実践{]} 入門』}
+  \item
+    \href{https://gihyo.jp/book/2022/978-4-297-12524-0}{igjit, atusy,
+    hanaori, 『Rが生産性を高める』}
+  \end{itemize}
+\item
+  因果推論
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://www.ohmsha.co.jp/book/9784274223136/}{浅野正彦,
+    矢内勇生, 『Rによる計量政治学』}
+  \item
+    \href{https://www.kyoritsu-pub.co.jp/bookdetail/9784320112452}{高橋
+    将宜, 『統計的因果推論の理論と実装』}
+  \item
+    \href{https://mixtape.scunning.com/}{Cunningham, `Causal Inference
+    the Mixtape'}
+  \item
+    \href{https://theeffectbook.net/}{Huntington-Klein, `The Effect: An
+    Introduction to Research Design and Causality'}
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{rmarkdownux3092ux7528ux3044ux305fux30ecux30ddux30fcux30c8ux306eux4f5cux6210}{%
 \section{RMarkdownを用いたレポートの作成}\label{rmarkdownux3092ux7528ux3044ux305fux30ecux30ddux30fcux30c8ux306eux4f5cux6210}}
@@ -3337,6 +3947,23 @@ bill\_length\_mm & Dream & 1.00 & 44.17 & 5.95 \\
   \item
     全てをR
     Markdownで完結させる必要はないので、例えば図や分析結果の出力をするためのWordファイルを作り、できたものをコピペするなどして使えば微調整も容易
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{rmarkdownux30d5ux30a1ux30a4ux30ebux3092ux3044ux3058ux3063ux3066ux307fux308b}{%
+\subsection{rmarkdownファイルをいじってみる}\label{rmarkdownux30d5ux30a1ux30a4ux30ebux3092ux3044ux3058ux3063ux3066ux307fux308b}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://raw.githubusercontent.com/T-Reio/r_introduction/main/rmarkdown_to_docx.Rmd}{リンク}からマークダウンファイルをダウンロード、開く
+\item
+  knitrパッケージがあれば動かせるはずです
+
+  \begin{itemize}
+  \tightlist
+  \item
+    knit: Ctrl + Shift + K
   \end{itemize}
 \end{itemize}
 
