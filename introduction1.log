@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.13.0 (TeX Live 2021/W32TeX)  (format=lualatex 2021.12.21)  27 APR 2022 14:04
+This is LuaHBTeX, Version 1.13.0 (TeX Live 2021/W32TeX)  (format=lualatex 2021.12.21)  12 MAY 2022 14:19
  restricted system commands enabled.
 **introduction1.tex
 (./introduction1.tex
@@ -1025,6 +1025,399 @@ Package graphics Info: Driver file: luatex.def on input line 105.
 )
 \Gin@req@height=\dimen259
 \Gin@req@width=\dimen260
+) (c:/texlive/2021/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2022/02/20 v3.6 Customizing captions (AR)
+(c:/texlive/2021/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2022/01/07 v2.3 caption3 kernel (AR)
+\caption@tempdima=\dimen261
+\captionmargin=\dimen262
+\caption@leftmargin=\dimen263
+\caption@rightmargin=\dimen264
+\caption@width=\dimen265
+\caption@indent=\dimen266
+\caption@parindent=\dimen267
+\caption@hangindent=\dimen268
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+Package caption Info: \@makecaption = \long macro:#1#2->{\small \advance \lefts
+kip .0628\linewidth \advance \rightskip .0628\linewidth \vskip \abovecaptionski
+p \sbox \@tempboxa {#1{\hskip 1\zw }#2}\ifdim \wd \@tempboxa <\hsize \centering
+ \fi #1{\hskip 1\zw }#2\par \vskip \belowcaptionskip } on input line 1157.
+)
+
+Package caption Warning: Unknown document class (or package),
+(caption)                standard defaults will be used.
+See the caption package documentation for explanation.
+
+\c@caption@flags=\count319
+\c@continuedfloat=\count320
+Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+(c:/texlive/2021/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+)) (c:/texlive/2021/texmf-dist/tex/latex/siunitx/siunitx.sty
+Package: siunitx 2020/02/25 v2.8b A comprehensive (SI) units package
+\l__siunitx_tmp_box=\box76
+\l__siunitx_tmp_dim=\dimen269
+\l__siunitx_tmp_int=\count321
+\l__siunitx_number_mantissa_length_int=\count322
+\l__siunitx_number_uncert_length_int=\count323
+\l__siunitx_round_int=\count324
+\l__siunitx_process_decimal_int=\count325
+\l__siunitx_process_uncertainty_int=\count326
+\l__siunitx_process_fixed_int=\count327
+\l__siunitx_process_integer_min_int=\count328
+\l__siunitx_process_precision_int=\count329
+\l__siunitx_group_min_int=\count330
+\l__siunitx_angle_marker_box=\box77
+\l__siunitx_angle_unit_box=\box78
+\l__siunitx_angle_marker_dim=\dimen270
+\l__siunitx_angle_unit_dim=\dimen271
+\l__siunitx_unit_int=\count331
+\l__siunitx_unit_denominator_int=\count332
+\l__siunitx_unit_numerator_int=\count333
+\l__siunitx_unit_prefix_int=\count334
+\l__siunitx_unit_prefix_base_int=\count335
+\l__siunitx_unit_prefix_gram_int=\count336
+\l__siunitx_number_product_int=\count337
+\c__siunitx_one_fill_skip=\skip65
+\l__siunitx_table_unit_align_skip=\skip66
+\l__siunitx_table_exponent_dim=\dimen272
+\l__siunitx_table_integer_dim=\dimen273
+\l__siunitx_table_mantissa_dim=\dimen274
+\l__siunitx_table_marker_dim=\dimen275
+\l__siunitx_table_result_dim=\dimen276
+\l__siunitx_table_uncert_dim=\dimen277
+\l__siunitx_table_fill_pre_dim=\dimen278
+\l__siunitx_table_fill_post_dim=\dimen279
+\l__siunitx_table_fill_mid_dim=\dimen280
+\l__siunitx_table_pre_box=\box79
+\l__siunitx_table_post_box=\box80
+\l__siunitx_table_mantissa_box=\box81
+\l__siunitx_table_result_box=\box82
+\l__siunitx_table_number_align_skip=\skip67
+\l__siunitx_table_text_align_skip=\skip68
+(c:/texlive/2021/texmf-dist/tex/latex/translator/translator.sty
+Package: translator 2020-08-03 v1.12c Easy translation of strings in LaTeX
+)) (c:/texlive/2021/texmf-dist/tex/luatex/luatexja/patches/lltjp-siunitx.sty) (c:/texlive/2021/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box83
+\UL@hyphenbox=\box84
+\UL@skip=\skip69
+\UL@hook=\toks34
+\UL@height=\dimen281
+\UL@pe=\count338
+\UL@pixel=\dimen282
+\ULC@box=\box85
+Package: ulem 2019/11/18
+\ULdepth=\dimen283
+) (c:/texlive/2021/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
+\everycr=\toks35
+\minrowclearance=\skip70
+) (c:/texlive/2021/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip71
+\multirow@cntb=\count339
+\multirow@dima=\skip72
+\bigstrutjot=\dimen284
+) (c:/texlive/2021/texmf-dist/tex/latex/tools/hhline.sty
+Package: hhline 2020/01/04 v2.04 Table rule package (DPC)
+) (c:/texlive/2021/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
+\TX@col@width=\dimen285
+\TX@old@table=\dimen286
+\TX@old@col=\dimen287
+\TX@target=\dimen288
+\TX@delta=\dimen289
+\TX@cols=\count340
+\TX@ftn=\toks36
+) (c:/texlive/2021/texmf-dist/tex/latex/threeparttable/threeparttable.sty
+Package: threeparttable 2003/06/13  v 3.0
+\@tempboxb=\box86
+) (c:/texlive/2021/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen290
+\WF@size=\dimen291
+\c@WF@wrappedlines=\count341
+\WF@box=\box87
+\WF@everypar=\toks37
+Package: wrapfig 2003/01/31  v 3.6
+) (c:/texlive/2021/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2020/08/19 v1.3 Adjusting TeX boxes (trim, clip, ...)
+(c:/texlive/2021/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+) (c:/texlive/2021/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
+(c:/texlive/2021/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box88
+)
+\tc@llx=\dimen292
+\tc@lly=\dimen293
+\tc@urx=\dimen294
+\tc@ury=\dimen295
+(c:/texlive/2021/texmf-dist/tex/latex/adjustbox/tc-pgf.def
+File: tc-pgf.def 2019/01/04 v2.2 trimclip fall-back clipping driver using PGF
+(c:/texlive/2021/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (c:/texlive/2021/t
+exmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (c:/texlive/2021/texmf-dist/tex/ge
+neric/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks38
+\pgfutil@tempdima=\dimen296
+\pgfutil@tempdimb=\dimen297
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.tex))
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box89
+) (c:/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (c:/tex
+live/2021/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2020/12/27 v3.1.8b (3.1.8b)
+))
+Package: pgf 2020/12/27 v3.1.8b (3.1.8b)
+(c:/texlive/2021/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (c:/texlive/20
+21/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (c:/texlive/2021/texmf-dist/
+tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2020/12/27 v3.1.8b (3.1.8b)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks39
+\pgfkeys@temptoks=\toks40
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks41
+))
+\pgf@x=\dimen298
+\pgf@y=\dimen299
+\pgf@xa=\dimen300
+\pgf@ya=\dimen301
+\pgf@xb=\dimen302
+\pgf@yb=\dimen303
+\pgf@xc=\dimen304
+\pgf@yc=\dimen305
+\pgf@xd=\dimen306
+\pgf@yd=\dimen307
+\w@pgf@writea=\write4
+\r@pgf@reada=\read3
+\c@pgf@counta=\count342
+\c@pgf@countb=\count343
+\c@pgf@countc=\count344
+\c@pgf@countd=\count345
+\t@pgf@toka=\toks42
+\t@pgf@tokb=\toks43
+\t@pgf@tokc=\toks44
+\pgf@sys@id@count=\count346
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2020/12/27 v3.1.8b (3.1.8b)
+)
+Driver file for pgf: pgfsys-luatex.def
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-luatex.def
+File: pgfsys-luatex.def 2020/12/27 v3.1.8b (3.1.8b)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2020/12/27 v3.1.8b (3.1.8b)
+)))
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfsyssoftpath@smallbuffer@items=\count347
+\pgfsyssoftpath@bigbuffer@items=\count348
+)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)) (c:/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2020/12/27 v3.1.8b (3.1.8b)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (c:/texlive/2
+021/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex (c:/texlive/2021/texmf
+-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (c:/texlive/2021/texmf-dist/te
+x/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen308
+\pgfmath@count=\count349
+\pgfmath@box=\box90
+\pgfmath@toks=\toks45
+\pgfmath@stack@operand=\toks46
+\pgfmath@stack@operation=\toks47
+) (c:/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.te
+x)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric
+.code.tex)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.t
+ex)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.co
+de.tex)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex
+)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.te
+x)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex
+)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithm
+etics.code.tex))) (c:/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfmathfloat
+.code.tex
+\c@pgfmathroundto@lastzeros=\count350
+)) (c:/texlive/2021/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (c:/texliv
+e/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@picminx=\dimen309
+\pgf@picmaxx=\dimen310
+\pgf@picminy=\dimen311
+\pgf@picmaxy=\dimen312
+\pgf@pathminx=\dimen313
+\pgf@pathmaxx=\dimen314
+\pgf@pathminy=\dimen315
+\pgf@pathmaxy=\dimen316
+\pgf@xx=\dimen317
+\pgf@xy=\dimen318
+\pgf@yx=\dimen319
+\pgf@yy=\dimen320
+\pgf@zx=\dimen321
+\pgf@zy=\dimen322
+)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.cod
+e.tex
+File: pgfcorepathconstruct.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@path@lastx=\dimen323
+\pgf@path@lasty=\dimen324
+)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.te
+x
+File: pgfcorepathusage.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@shorten@end@additional=\dimen325
+\pgf@shorten@start@additional=\dimen326
+) (c:/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfpic=\box91
+\pgf@hbox=\box92
+\pgf@layerbox@main=\box93
+\pgf@picture@serial@count=\count351
+)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code
+.tex
+File: pgfcoregraphicstate.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgflinewidth=\dimen327
+)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.c
+ode.tex
+File: pgfcoretransformations.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@pt@x=\dimen328
+\pgf@pt@y=\dimen329
+\pgf@pt@temp=\dimen330
+) (c:/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+) (c:/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.te
+x
+File: pgfcoreobjects.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.co
+de.tex
+File: pgfcorepathprocessing.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+) (c:/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfarrowsep=\dimen331
+) (c:/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@max=\dimen332
+\pgf@sys@shading@range@num=\count352
+\pgf@shadingcount=\count353
+) (c:/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfexternal@startupbox=\box94
+)) (c:/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x
+File: pgfcorelayers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code
+.tex
+File: pgfcoretransparency.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(c:/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+) (c:/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+))) (c:/texlive/2021/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.te
+x
+File: pgfmoduleshapes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\pgfnodeparttextbox=\box95
+) (c:/texlive/2021/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+)
+(c:/texlive/2021/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.st
+y
+Package: pgfcomp-version-0-65 2020/12/27 v3.1.8b (3.1.8b)
+\pgf@nodesepstart=\dimen333
+\pgf@nodesepend=\dimen334
+)
+(c:/texlive/2021/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.st
+y
+Package: pgfcomp-version-1-18 2020/12/27 v3.1.8b (3.1.8b)
+)))
+Package trimclip Info: No clipping driver 'tc-luatex.def' available.
+(trimclip)             Using fall-back PGF driver.
+)
+\adjbox@Width=\dimen335
+\adjbox@Height=\dimen336
+\adjbox@Depth=\dimen337
+\adjbox@Totalheight=\dimen338
+\adjbox@pwidth=\dimen339
+\adjbox@pheight=\dimen340
+\adjbox@pdepth=\dimen341
+\adjbox@ptotalheight=\dimen342
+(c:/texlive/2021/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
+\c@checkoddpage=\count354
+) (c:/texlive/2021/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box96
+\sift@deathcycles=\count355
+\@vwid@loff=\dimen343
+\@vwid@roff=\dimen344
+)) (c:/texlive/2021/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count356
+\float@exts=\toks48
+\float@box=\box97
+\@float@everytoks=\toks49
+\@floatcapt=\box98
+) (c:/texlive/2021/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
+(c:/texlive/2021/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+) (c:/texlive/2021/texmf-dist/tex/latex/tabu/tabu.sty
+Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
+\c@taburow=\count357
+\tabu@nbcols=\count358
+\tabu@cnt=\count359
+\tabu@Xcol=\count360
+\tabu@alloc=\count361
+\tabu@nested=\count362
+\tabu@target=\dimen345
+\tabu@spreadtarget=\dimen346
+\tabu@naturalX=\dimen347
+\tabucolX=\dimen348
+\tabu@Xsum=\dimen349
+\extrarowdepth=\dimen350
+\abovetabulinesep=\dimen351
+\belowtabulinesep=\dimen352
+\tabustrutrule=\dimen353
+\tabu@thebody=\toks50
+\tabu@footnotes=\toks51
+\tabu@box=\box99
+\tabu@arstrutbox=\box100
+\tabu@hleads=\box101
+\tabu@vleads=\box102
+\tabu@cellskip=\skip73
+) (c:/texlive/2021/texmf-dist/tex/latex/threeparttablex/threeparttablex.sty
+Package: threeparttablex 2013/07/23 v0.3 by daleif
+(c:/texlive/2021/texmf-dist/tex/latex/environ/environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+(c:/texlive/2021/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+))
+\TPTL@width=\skip74
+) (c:/texlive/2021/texmf-dist/tex/latex/makecell/makecell.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+\rotheadsize=\dimen354
+\c@nlinenum=\count363
+\TeXr@lab=\toks52
 ) (c:/texlive/2021/texmf-dist/tex/lualatex/selnolig/selnolig.sty
 === Package selnolig, Version 0.302, Date 2015/10/26 ===
 Package: selnolig 2015/10/26
@@ -1034,46 +1427,46 @@ Package: lltjp-array 2018/03/29 Patch to array for LuaTeX-ja
 ) (./introduction1.aux)
 \openout1 = introduction1.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for JY3/mc/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for JT3/mc/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for JY3/mc/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for JT3/mc/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
 ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 119.
+LaTeX Info: Redefining \selectfont on input line 143.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 119.
+(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 143.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 119.
+(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 143.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 119.
+(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 143.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 119.
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 143.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 119.
+(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 143.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 119.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 143.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 119.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 143.
 (load cache: extra_latinmodernmath-regular.luc)
 
 Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
@@ -1109,7 +1502,7 @@ se;script=math;language=dflt;"
 (fontspec)             \__um_luatex_copy_fontdimens: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 119.
+(Font)              scaled to size 10.0pt on input line 143.
 
 Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
 
@@ -1153,18 +1546,18 @@ se;script=math;language=dflt;"
 (fontspec)             \__um_luatex_copy_fontdimens: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 119.
+(Font)              scaled to size 10.0pt on input line 143.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 119.
+(Font)              `operators' in the math version `normal' on input line 143.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input
- line 119.
+ line 143.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 119.
+(Font)              `operators' in the math version `bold' on input line 143.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on inpu
-t line 119.
+t line 143.
 
 Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
 
@@ -1254,15 +1647,15 @@ e;script=math;language=dflt;"
 (fontspec)             21\font =0pt\relax 
 
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 119.
+(Font)              `symbols' in the math version `normal' on input line 143.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
 (Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on inpu
-t line 119.
+t line 143.
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 119.
+(Font)              `symbols' in the math version `bold' on input line 143.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
 (Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on inpu
-t line 119.
+t line 143.
 
 Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
 
@@ -1335,59 +1728,59 @@ se;script=math;language=dflt;"
 
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
 (Font)              `largesymbols' in the math version `normal' on input line 1
-19.
+43.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
 (Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on inpu
-t line 119.
+t line 143.
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 119
+(Font)              `largesymbols' in the math version `bold' on input line 143
 .
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on inpu
-t line 119.
+t line 143.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 119.
+(Font)              scaled to size 7.0pt on input line 143.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 119.
+(Font)              scaled to size 5.0pt on input line 143.
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-19.
+43.
 (c:/texlive/2021/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 119.
+(Font)              scaled to size 10.00092pt on input line 143.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 119.
+(Font)              scaled to size 7.00064pt on input line 143.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 119.
+(Font)              scaled to size 5.00046pt on input line 143.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 119.
+(Font)              scaled to size 9.99893pt on input line 143.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 119.
+(Font)              scaled to size 6.99925pt on input line 143.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 119.
+(Font)              scaled to size 4.99947pt on input line 143.
 LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
-(Font)              scaled to size 6.47299pt on input line 119.
+(Font)              scaled to size 6.47299pt on input line 143.
 LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
-(Font)              scaled to size 4.62357pt on input line 119.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 119
+(Font)              scaled to size 4.62357pt on input line 143.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 143
 .
 (c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 119
+LaTeX Font Info:    Trying to load font information for U+msb on input line 143
 .
 (c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Info: Redefining \microtypecontext on input line 119.
+LaTeX Info: Redefining \microtypecontext on input line 143.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 119.
+LaTeX Info: Redefining \showhyphens on input line 143.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of spacing.
 Package microtype Info: No adjustment of kerning.
@@ -1396,17 +1789,17 @@ File: mt-LatinModernRoman.cfg 2021/02/21 v1.1 microtype config. file: Latin Mod
 ern Roman (RS)
 ) (c:/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count319
-\scratchdimen=\dimen261
-\scratchbox=\box76
-\nofMPsegments=\count320
-\nofMParguments=\count321
-\everyMPshowfont=\toks34
-\MPscratchCnt=\count322
-\MPscratchDim=\dimen262
-\MPnumerator=\count323
-\makeMPintoPDFobject=\count324
-\everyMPtoPDFconversion=\toks35
+\scratchcounter=\count364
+\scratchdimen=\dimen355
+\scratchbox=\box103
+\nofMPsegments=\count365
+\nofMParguments=\count366
+\everyMPshowfont=\toks53
+\MPscratchCnt=\count367
+\MPscratchDim=\dimen356
+\MPnumerator=\count368
+\makeMPintoPDFobject=\count369
+\everyMPtoPDFconversion=\toks54
 ) (c:/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -1415,7 +1808,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 119.
+Package hyperref Info: Link coloring OFF on input line 143.
 (c:/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 (c:/texlive/2021/texmf-dist/tex/latex/refcount/refcount.sty
@@ -1423,309 +1816,322 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (c:/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count325
+\c@section@level=\count370
 )
-LaTeX Info: Redefining \ref on input line 119.
-LaTeX Info: Redefining \pageref on input line 119.
-LaTeX Info: Redefining \nameref on input line 119.
-(load cache: extra_lmroman17-regular.luc)
+LaTeX Info: Redefining \ref on input line 143.
+LaTeX Info: Redefining \pageref on input line 143.
+LaTeX Info: Redefining \nameref on input line 143.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: threeparttable package is loaded.
+Package caption Info: wrapfig package is loaded.
+Package caption Info: End \AtBeginDocument code.
+(c:/texlive/2021/texmf-dist/tex/latex/siunitx/siunitx-abbreviations.cfg
+File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
+)
+(c:/texlive/2021/texmf-dist/tex/latex/translator/translator-basic-dictionary-En
+glish.dict
+Dictionary: translator-basic-dictionary, Language: English 
+)(load cache: extra_lmsans10-regular.luc)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmss' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+(load cache: extra_lmsans8-regular.luc)(load cache: extra_lmmono10-regular.luc)(
+load cache: extra_lmmono8-regular.luc)(load cache: extra_lmroman17-regular.luc)
 LaTeX Font Info:    Font shape `JT3/mc/m/n' will be
-(Font)              scaled to size 15.97903pt on input line 121.
+(Font)              scaled to size 15.97903pt on input line 145.
 LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
-(Font)              scaled to size 15.97903pt on input line 121.
+(Font)              scaled to size 15.97903pt on input line 145.
 (load cache: extra_lmroman12-regular.luc)
 LaTeX Font Info:    Font shape `JT3/mc/m/n' will be
-(Font)              scaled to size 11.09656pt on input line 121.
+(Font)              scaled to size 11.09656pt on input line 145.
 LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
-(Font)              scaled to size 11.09656pt on input line 121.
+(Font)              scaled to size 11.09656pt on input line 145.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 12.0pt on input line 121.
+(Font)              scaled to size 12.0pt on input line 145.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 121.
+(Font)              scaled to size 8.0pt on input line 145.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 121.
+(Font)              scaled to size 6.0pt on input line 145.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 12.0011pt on input line 121.
+(Font)              scaled to size 12.0011pt on input line 145.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 8.00073pt on input line 121.
+(Font)              scaled to size 8.00073pt on input line 145.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 6.00055pt on input line 121.
+(Font)              scaled to size 6.00055pt on input line 145.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 11.99872pt on input line 121.
+(Font)              scaled to size 11.99872pt on input line 145.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.99915pt on input line 121.
+(Font)              scaled to size 7.99915pt on input line 145.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.99936pt on input line 121.
+(Font)              scaled to size 5.99936pt on input line 145.
+(load cache: extra_lmsans12-regular.luc)(load cache: extra_lmmono12-regular.luc)
 LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
-(Font)              scaled to size 5.54828pt on input line 121.
+(Font)              scaled to size 5.54828pt on input line 145.
 (c:/texlive/2021/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 ) (c:/texlive/2021/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `JT3/mc/m/n' will be
-(Font)              scaled to size 13.31586pt on input line 123.
+(Font)              scaled to size 13.31586pt on input line 147.
 LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
-(Font)              scaled to size 13.31586pt on input line 123.
+(Font)              scaled to size 13.31586pt on input line 147.
 LaTeX Font Info:    Font shape `JT3/gt/m/n' will be
-(Font)              scaled to size 13.31586pt on input line 123.
+(Font)              scaled to size 13.31586pt on input line 147.
 LaTeX Font Info:    Font shape `JY3/gt/m/n' will be
-(Font)              scaled to size 13.31586pt on input line 123.
-(load cache: extra_lmsans12-regular.luc)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `lmss' (encoding: TU).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
+(Font)              scaled to size 13.31586pt on input line 147.
 LaTeX Font Info:    Font shape `JT3/gt/m/n' will be
-(Font)              scaled to size 11.09656pt on input line 144.
+(Font)              scaled to size 11.09656pt on input line 170.
 LaTeX Font Info:    Font shape `JY3/gt/m/n' will be
-(Font)              scaled to size 11.09656pt on input line 144.
+(Font)              scaled to size 11.09656pt on input line 170.
 LaTeX Font Info:    Font shape `JT3/gt/m/n' will be
-(Font)              scaled to size 9.24713pt on input line 205.
+(Font)              scaled to size 9.24713pt on input line 231.
 (load cache: extra_lmroman10-italic.luc)
 LaTeX Font Info:    Font shape `JT3/gt/m/it' in size <10> not available
-(Font)              Font shape `JT3/gt/m/n' tried instead on input line 205.
+(Font)              Font shape `JT3/gt/m/n' tried instead on input line 231.
 LaTeX Font Info:    Font shape `JT3/gt/m/n' will be
-(Font)              scaled to size 9.24713pt on input line 205.
+(Font)              scaled to size 9.24713pt on input line 231.
 LaTeX Font Info:    Font shape `JY3/gt/m/it' in size <10> not available
-(Font)              Font shape `JY3/gt/m/n' tried instead on input line 205.
+(Font)              Font shape `JY3/gt/m/n' tried instead on input line 231.
 LaTeX Font Info:    Font shape `JY3/gt/m/n' will be
-(Font)              scaled to size 9.24713pt on input line 205.
+(Font)              scaled to size 9.24713pt on input line 231.
 [1
 
 {c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<figs/data_rei.png, id=27, 460.21938pt x 184.18813pt>
+<figs/data_rei.png, id=31, 460.21938pt x 184.18813pt>
 File: figs/data_rei.png Graphic file (type png)
 <use figs/data_rei.png>
-Package luatex.def Info: figs/data_rei.png  used on input line 287.
+Package luatex.def Info: figs/data_rei.png  used on input line 313.
 (luatex.def)             Requested size: 317.19356pt x 126.9466pt.
 [2]
-<figs/summary_ex.png, id=40, 621.82312pt x 195.22937pt>
+<figs/summary_ex.png, id=44, 621.82312pt x 195.22937pt>
 File: figs/summary_ex.png Graphic file (type png)
 <use figs/summary_ex.png>
-Package luatex.def Info: figs/summary_ex.png  used on input line 314.
+Package luatex.def Info: figs/summary_ex.png  used on input line 340.
 (luatex.def)             Requested size: 362.48889pt x 113.80804pt.
-(load cache: extra_lmmono10-regular.luc)
-<introduction1_files/figure-latex/unnamed-chunk-3-1.pdf, id=41, 433.62pt x 289.
+<introduction1_files/figure-latex/unnamed-chunk-3-1.pdf, id=45, 433.62pt x 289.
 08pt>
 File: introduction1_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type
  pdf)
 <use introduction1_files/figure-latex/unnamed-chunk-3-1.pdf>
 Package luatex.def Info: introduction1_files/figure-latex/unnamed-chunk-3-1.pdf
-  used on input line 340.
+  used on input line 366.
 (luatex.def)             Requested size: 433.63878pt x 289.09251pt.
 [3<./figs/data_rei.png><./figs/summary_ex.png>](load cache: extra_lmroman7-regul
 ar.luc)
 LaTeX Font Info:    Font shape `JT3/mc/m/n' will be
-(Font)              scaled to size 6.47299pt on input line 351.
+(Font)              scaled to size 6.47299pt on input line 377.
 (load cache: extra_lmroman5-regular.luc)
 LaTeX Font Info:    Font shape `JT3/mc/m/n' will be
-(Font)              scaled to size 4.62357pt on input line 351.
+(Font)              scaled to size 4.62357pt on input line 377.
 [4<./introduction1_files/figure-latex/unnamed-chunk-3-1.pdf>] [5] [6]
-<figs/r_structure.png, id=92, 963.6pt x 542.025pt>
+<figs/r_structure.png, id=96, 963.6pt x 542.025pt>
 File: figs/r_structure.png Graphic file (type png)
 <use figs/r_structure.png>
-Package luatex.def Info: figs/r_structure.png  used on input line 565.
+Package luatex.def Info: figs/r_structure.png  used on input line 591.
 (luatex.def)             Requested size: 430.44008pt x 242.12253pt.
 [7<./figs/r_structure.png>]
-<figs/rstudio_appearance.png, id=105, 963.09813pt x 426.59375pt>
+<figs/rstudio_appearance.png, id=109, 963.09813pt x 426.59375pt>
 File: figs/rstudio_appearance.png Graphic file (type png)
 <use figs/rstudio_appearance.png>
-Package luatex.def Info: figs/rstudio_appearance.png  used on input line 627.
+Package luatex.def Info: figs/rstudio_appearance.png  used on input line 653.
 (luatex.def)             Requested size: 348.89001pt x 154.537pt.
 [8<./figs/rstudio_appearance.png>]
-<figs/folder.jpg, id=117, 963.6pt x 542.025pt>
+<figs/folder.jpg, id=121, 963.6pt x 542.025pt>
 File: figs/folder.jpg Graphic file (type jpg)
 <use figs/folder.jpg>
-Package luatex.def Info: figs/folder.jpg  used on input line 716.
+Package luatex.def Info: figs/folder.jpg  used on input line 742.
 (luatex.def)             Requested size: 348.89539pt x 196.25365pt.
-<figs/directory_system.png, id=118, 963.6pt x 542.025pt>
+<figs/directory_system.png, id=122, 963.6pt x 542.025pt>
 File: figs/directory_system.png Graphic file (type png)
 <use figs/directory_system.png>
-Package luatex.def Info: figs/directory_system.png  used on input line 736.
+Package luatex.def Info: figs/directory_system.png  used on input line 762.
 (luatex.def)             Requested size: 430.44008pt x 242.12253pt.
 [9<./figs/folder.jpg>]
-<figs/directory_system2.png, id=127, 963.6pt x 542.025pt>
+<figs/directory_system2.png, id=131, 963.6pt x 542.025pt>
 File: figs/directory_system2.png Graphic file (type png)
 <use figs/directory_system2.png>
-Package luatex.def Info: figs/directory_system2.png  used on input line 741.
+Package luatex.def Info: figs/directory_system2.png  used on input line 767.
 (luatex.def)             Requested size: 430.44008pt x 242.12253pt.
 [10<./figs/directory_system.png><./figs/directory_system2.png>] [11]
-<figs/create_repository.png, id=152, 963.6pt x 542.025pt>
+<figs/create_repository.png, id=156, 963.6pt x 542.025pt>
 File: figs/create_repository.png Graphic file (type png)
 <use figs/create_repository.png>
-Package luatex.def Info: figs/create_repository.png  used on input line 857.
+Package luatex.def Info: figs/create_repository.png  used on input line 883.
 (luatex.def)             Requested size: 430.44008pt x 242.12253pt.
-<figs/create_repository2.png, id=153, 963.6pt x 542.025pt>
+<figs/create_repository2.png, id=157, 963.6pt x 542.025pt>
 File: figs/create_repository2.png Graphic file (type png)
 <use figs/create_repository2.png>
-Package luatex.def Info: figs/create_repository2.png  used on input line 862.
+Package luatex.def Info: figs/create_repository2.png  used on input line 888.
 (luatex.def)             Requested size: 430.44008pt x 242.12253pt.
-<figs/directory_example.png, id=154, 499.8675pt x 235.88126pt>
+<figs/directory_example.png, id=158, 499.8675pt x 235.88126pt>
 File: figs/directory_example.png Graphic file (type png)
 <use figs/directory_example.png>
-Package luatex.def Info: figs/directory_example.png  used on input line 867.
+Package luatex.def Info: figs/directory_example.png  used on input line 893.
 (luatex.def)             Requested size: 430.46497pt x 203.13106pt.
 [12<./figs/create_repository.png><./figs/create_repository2.png>]
-<figs/console.png, id=164, 586.19pt x 215.30438pt>
+<figs/console.png, id=168, 586.19pt x 215.30438pt>
 File: figs/console.png Graphic file (type png)
 <use figs/console.png>
-Package luatex.def Info: figs/console.png  used on input line 905.
+Package luatex.def Info: figs/console.png  used on input line 931.
 (luatex.def)             Requested size: 430.44644pt x 158.10062pt.
 [13<./figs/directory_example.png>](load cache: extra_lmmono10-italic.luc)
-<figs/script.png, id=176, 582.175pt x 269.50688pt>
+<figs/script.png, id=180, 582.175pt x 269.50688pt>
 File: figs/script.png Graphic file (type png)
 <use figs/script.png>
-Package luatex.def Info: figs/script.png  used on input line 949.
+Package luatex.def Info: figs/script.png  used on input line 975.
 (luatex.def)             Requested size: 430.4652pt x 199.27568pt.
 [14<./figs/console.png>] [15<./figs/script.png>] [16] [17]
-<figs/df_check.png, id=218, 1420.55719pt x 456.20438pt>
+<figs/df_check.png, id=222, 1420.55719pt x 456.20438pt>
 File: figs/df_check.png Graphic file (type png)
 <use figs/df_check.png>
-Package luatex.def Info: figs/df_check.png  used on input line 1285.
+Package luatex.def Info: figs/df_check.png  used on input line 1311.
 (luatex.def)             Requested size: 407.78926pt x 130.95934pt.
 [18<./figs/df_check.png>] [19] [20]
-<introduction1_files/figure-latex/unnamed-chunk-28-1.pdf, id=249, 469.755pt x 3
+<introduction1_files/figure-latex/unnamed-chunk-28-1.pdf, id=253, 469.755pt x 3
 25.215pt>
 File: introduction1_files/figure-latex/unnamed-chunk-28-1.pdf Graphic file (typ
 e pdf)
 <use introduction1_files/figure-latex/unnamed-chunk-28-1.pdf>
 Package luatex.def Info: introduction1_files/figure-latex/unnamed-chunk-28-1.pd
-f  used on input line 1488.
+f  used on input line 1514.
 (luatex.def)             Requested size: 212.95757pt x 147.43214pt.
 [21<./introduction1_files/figure-latex/unnamed-chunk-28-1.pdf>] [22]
-<introduction1_files/figure-latex/unnamed-chunk-33-1.pdf, id=274, 1003.75pt x 5
+<introduction1_files/figure-latex/unnamed-chunk-33-1.pdf, id=278, 1003.75pt x 5
 82.175pt>
 File: introduction1_files/figure-latex/unnamed-chunk-33-1.pdf Graphic file (typ
 e pdf)
 <use introduction1_files/figure-latex/unnamed-chunk-33-1.pdf>
 Package luatex.def Info: introduction1_files/figure-latex/unnamed-chunk-33-1.pd
-f  used on input line 1657.
+f  used on input line 1683.
 (luatex.def)             Requested size: 271.87381pt x 157.68681pt.
 [23<./introduction1_files/figure-latex/unnamed-chunk-33-1.pdf>] [24] [25]
 File: figs/summary_ex.png Graphic file (type png)
 <use figs/summary_ex.png>
-Package luatex.def Info: figs/summary_ex.png  used on input line 1942.
+Package luatex.def Info: figs/summary_ex.png  used on input line 1968.
 (luatex.def)             Requested size: 362.48889pt x 113.80804pt.
 [26] [27] [28] [29] [30] [31] [32]
-Overfull \hbox (29.89056pt too wide) in paragraph at lines 2469--2469
+Overfull \hbox (29.89056pt too wide) in paragraph at lines 2495--2495
 []\TU/lmtt/m/n/10 ## `summarise()` has grouped output by 'sex'. You can override
  using the `.groups` argument.[] 
  []
 
 [33] [34] [35] [36]
-<figs/Ohtani_spray_total.png, id=474, 361.35pt x 216.81pt>
+<figs/Ohtani_spray_total.png, id=478, 361.35pt x 216.81pt>
 File: figs/Ohtani_spray_total.png Graphic file (type png)
 <use figs/Ohtani_spray_total.png>
-Package luatex.def Info: figs/Ohtani_spray_total.png  used on input line 2663.
+Package luatex.def Info: figs/Ohtani_spray_total.png  used on input line 2689.
 (luatex.def)             Requested size: 226.55447pt x 135.93268pt.
-<introduction1_files/figure-latex/unnamed-chunk-56-1.pdf, id=475, 469.755pt x 3
+<introduction1_files/figure-latex/unnamed-chunk-56-1.pdf, id=479, 469.755pt x 3
 25.215pt>
 File: introduction1_files/figure-latex/unnamed-chunk-56-1.pdf Graphic file (typ
 e pdf)
 <use introduction1_files/figure-latex/unnamed-chunk-56-1.pdf>
 Package luatex.def Info: introduction1_files/figure-latex/unnamed-chunk-56-1.pd
-f  used on input line 2684.
+f  used on input line 2710.
 (luatex.def)             Requested size: 181.23972pt x 125.47365pt.
-<figs/ggplot_fig.png, id=476, 649.67719pt x 285.31593pt>
+<figs/ggplot_fig.png, id=480, 649.67719pt x 285.31593pt>
 File: figs/ggplot_fig.png Graphic file (type png)
 <use figs/ggplot_fig.png>
-Package luatex.def Info: figs/ggplot_fig.png  used on input line 2690.
+Package luatex.def Info: figs/ggplot_fig.png  used on input line 2716.
 (luatex.def)             Requested size: 362.49828pt x 159.19681pt.
 [37<./figs/Ohtani_spray_total.png><./introduction1_files/figure-latex/unnamed-ch
 unk-56-1.pdf>]
-<introduction1_files/figure-latex/unnamed-chunk-58-1.pdf, id=488, 469.755pt x 3
+<introduction1_files/figure-latex/unnamed-chunk-58-1.pdf, id=492, 469.755pt x 3
 25.215pt>
 File: introduction1_files/figure-latex/unnamed-chunk-58-1.pdf Graphic file (typ
 e pdf)
 <use introduction1_files/figure-latex/unnamed-chunk-58-1.pdf>
 Package luatex.def Info: introduction1_files/figure-latex/unnamed-chunk-58-1.pd
-f  used on input line 2733.
+f  used on input line 2759.
 (luatex.def)             Requested size: 226.55502pt x 156.84578pt.
 [38<./figs/ggplot_fig.png>]
-<introduction1_files/figure-latex/unnamed-chunk-59-1.pdf, id=499, 469.755pt x 3
+<introduction1_files/figure-latex/unnamed-chunk-59-1.pdf, id=503, 469.755pt x 3
 25.215pt>
 File: introduction1_files/figure-latex/unnamed-chunk-59-1.pdf Graphic file (typ
 e pdf)
 <use introduction1_files/figure-latex/unnamed-chunk-59-1.pdf>
 Package luatex.def Info: introduction1_files/figure-latex/unnamed-chunk-59-1.pd
-f  used on input line 2763.
+f  used on input line 2789.
 (luatex.def)             Requested size: 181.23972pt x 125.47365pt.
 [39<./introduction1_files/figure-latex/unnamed-chunk-58-1.pdf><./introduction1_f
 iles/figure-latex/unnamed-chunk-59-1.pdf>]
-<introduction1_files/figure-latex/unnamed-chunk-60-1.pdf, id=516, 469.755pt x 3
+<introduction1_files/figure-latex/unnamed-chunk-60-1.pdf, id=520, 469.755pt x 3
 25.215pt>
 File: introduction1_files/figure-latex/unnamed-chunk-60-1.pdf Graphic file (typ
 e pdf)
 <use introduction1_files/figure-latex/unnamed-chunk-60-1.pdf>
 Package luatex.def Info: introduction1_files/figure-latex/unnamed-chunk-60-1.pd
-f  used on input line 2793.
+f  used on input line 2819.
 (luatex.def)             Requested size: 181.23972pt x 125.47365pt.
-<introduction1_files/figure-latex/unnamed-chunk-61-1.pdf, id=517, 469.755pt x 3
+<introduction1_files/figure-latex/unnamed-chunk-61-1.pdf, id=521, 469.755pt x 3
 25.215pt>
 File: introduction1_files/figure-latex/unnamed-chunk-61-1.pdf Graphic file (typ
 e pdf)
 <use introduction1_files/figure-latex/unnamed-chunk-61-1.pdf>
 Package luatex.def Info: introduction1_files/figure-latex/unnamed-chunk-61-1.pd
-f  used on input line 2817.
+f  used on input line 2843.
 (luatex.def)             Requested size: 181.23972pt x 125.47365pt.
 [40<./introduction1_files/figure-latex/unnamed-chunk-60-1.pdf><./introduction1_f
 iles/figure-latex/unnamed-chunk-61-1.pdf>]
-<introduction1_files/figure-latex/unnamed-chunk-62-1.pdf, id=541, 469.755pt x 3
+<introduction1_files/figure-latex/unnamed-chunk-62-1.pdf, id=545, 469.755pt x 3
 25.215pt>
 File: introduction1_files/figure-latex/unnamed-chunk-62-1.pdf Graphic file (typ
 e pdf)
 <use introduction1_files/figure-latex/unnamed-chunk-62-1.pdf>
 Package luatex.def Info: introduction1_files/figure-latex/unnamed-chunk-62-1.pd
-f  used on input line 2832.
+f  used on input line 2858.
 (luatex.def)             Requested size: 181.23972pt x 125.47365pt.
-<introduction1_files/figure-latex/unnamed-chunk-63-1.pdf, id=542, 469.755pt x 3
+<introduction1_files/figure-latex/unnamed-chunk-63-1.pdf, id=546, 469.755pt x 3
 25.215pt>
 File: introduction1_files/figure-latex/unnamed-chunk-63-1.pdf Graphic file (typ
 e pdf)
 <use introduction1_files/figure-latex/unnamed-chunk-63-1.pdf>
 Package luatex.def Info: introduction1_files/figure-latex/unnamed-chunk-63-1.pd
-f  used on input line 2863.
+f  used on input line 2889.
 (luatex.def)             Requested size: 181.23972pt x 125.47365pt.
 [41<./introduction1_files/figure-latex/unnamed-chunk-62-1.pdf><./introduction1_f
 iles/figure-latex/unnamed-chunk-63-1.pdf>]
-<introduction1_files/figure-latex/unnamed-chunk-64-1.pdf, id=562, 469.755pt x 3
+<introduction1_files/figure-latex/unnamed-chunk-64-1.pdf, id=566, 469.755pt x 3
 25.215pt>
 File: introduction1_files/figure-latex/unnamed-chunk-64-1.pdf Graphic file (typ
 e pdf)
 <use introduction1_files/figure-latex/unnamed-chunk-64-1.pdf>
 Package luatex.def Info: introduction1_files/figure-latex/unnamed-chunk-64-1.pd
-f  used on input line 2880.
+f  used on input line 2906.
 (luatex.def)             Requested size: 181.23972pt x 125.47365pt.
-<introduction1_files/figure-latex/unnamed-chunk-65-1.pdf, id=563, 469.755pt x 3
+<introduction1_files/figure-latex/unnamed-chunk-65-1.pdf, id=567, 469.755pt x 3
 25.215pt>
 File: introduction1_files/figure-latex/unnamed-chunk-65-1.pdf Graphic file (typ
 e pdf)
 <use introduction1_files/figure-latex/unnamed-chunk-65-1.pdf>
 Package luatex.def Info: introduction1_files/figure-latex/unnamed-chunk-65-1.pd
-f  used on input line 2912.
+f  used on input line 2938.
 (luatex.def)             Requested size: 203.89737pt x 141.15971pt.
 [42<./introduction1_files/figure-latex/unnamed-chunk-64-1.pdf>]
-<figs/Ohtani_pitch_usage_byMonth.png, id=575, 505.89pt x 289.08pt>
+<figs/Ohtani_pitch_usage_byMonth.png, id=579, 505.89pt x 289.08pt>
 File: figs/Ohtani_pitch_usage_byMonth.png Graphic file (type png)
 <use figs/Ohtani_pitch_usage_byMonth.png>
 Package luatex.def Info: figs/Ohtani_pitch_usage_byMonth.png  used on input lin
-e 2957.
+e 2983.
 (luatex.def)             Requested size: 294.52025pt x 168.29729pt.
 [43<./introduction1_files/figure-latex/unnamed-chunk-65-1.pdf>] [44<./figs/Ohtan
-i_pitch_usage_byMonth.png>] [45] [46] [47] [48] (./introduction1.aux))
+i_pitch_usage_byMonth.png>] [45] [46] [47] [48] [49] [50] [51] [52] [53] [54] (./introduction1.aux))
 
 Here is how much of LuaTeX's memory you used:
- 22026 strings out of 478531
- 305813,1144653 words of node,token memory allocated
- 68240 words of node memory still in use:
-   10 hlist, 2 vlist, 5 rule, 36 glue, 413 kern, 1 glyph, 20227 attribute, 4094 
-glue_spec, 1114 attribute_list, 1 write, 634 user_defined, 1 pdf_action nodes
-   avail lists: 1:24,2:59484,3:2720,4:762,5:210,6:99,7:6566,8:50,9:2430,10:15,11
-:75
- 40543 multiletter control sequences out of 65536+600000
- 86 fonts using 44731183 bytes
- 127i,6n,124p,1779b,558s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 35521 strings out of 478531
+ 382262,1373583 words of node,token memory allocated
+ 81711 words of node memory still in use:
+   10 hlist, 3 vlist, 7 rule, 42 glue, 417 kern, 1 glyph, 24605 attribute, 4729 
+glue_spec, 1368 attribute_list, 2 write, 867 user_defined, 1 pdf_action, 2 pdf_c
+olorstack nodes
+   avail lists: 1:27,2:87034,3:2748,4:2038,5:217,6:99,7:6569,8:50,9:3085,10:15,1
+1:82
+ 53414 multiletter control sequences out of 65536+600000
+ 97 fonts using 45664843 bytes
+ 127i,14n,124p,1779b,956s stack positions out of 5000i,500n,10000p,200000b,80000s
 <c:/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmmono10-italic.otf><c:/tex
 live/2021/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf><c:/texl
 ive/2021/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf><c:/texli
@@ -1738,10 +2144,10 @@ pentype/public/haranoaji/HaranoAjiMincho-Regular.otf><c:/texlive/2021/texmf-dist
 s/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf><c:/texlive/2021/texmf-di
 st/fonts/opentype/public/lm/lmroman12-regular.otf><c:/texlive/2021/texmf-dist/fo
 nts/opentype/public/lm/lmroman17-regular.otf>
-Output written on introduction1.pdf (48 pages, 1569870 bytes).
+Output written on introduction1.pdf (54 pages, 1611972 bytes).
 
-PDF statistics: 1081 PDF objects out of 1200 (max. 8388607)
- 901 compressed objects within 10 object streams
- 282 named destinations out of 1000 (max. 131072)
- 921 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 1219 PDF objects out of 1440 (max. 8388607)
+ 1032 compressed objects within 11 object streams
+ 329 named destinations out of 1000 (max. 131072)
+ 1080 words of extra memory for PDF output out of 10000 (max. 100000000)
 

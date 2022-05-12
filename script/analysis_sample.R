@@ -15,9 +15,9 @@ library(palmerpenguins)
 
 data("CollegeDistance")
 
-View(CollegeDistance)
+#View(CollegeDistance)
 
-CollegeDistance$ethnicity %>% unique() # その列に含まれる要素を表示
+#CollegeDistance$ethnicity %>% unique() # その列に含まれる要素を表示
 
 CollegeDistance <- CollegeDistance %>%
   mutate(
@@ -118,7 +118,7 @@ table <- huxreg( # 回帰式を
 
 table
 
-quick_pptx(table, file = "tab/college_regression.pptx") # quick_〇〇関数で保存
+#quick_pptx(table, file = "tab/college_regression.pptx") # quick_〇〇関数で保存
 
 
 ## modelsummary
@@ -126,10 +126,10 @@ quick_pptx(table, file = "tab/college_regression.pptx") # quick_〇〇関数で�
 table_list <- list("(1)" = model1, "(2)" = model2, "(3)" = model3)
 
 msummary(table_list)
-msummary(table_list, output = "tab/college_reg.docx")
+#msummary(table_list, output = "tab/college_reg.docx")
 
 tab <- msummary(table_list, output = "huxtable") # huxtableでの出力を嚙ませればexcelにも出力可能
-quick_xlsx(tab, file = "tab/college_reg.xlsx")
+#quick_xlsx(tab, file = "tab/college_reg.xlsx")
 
 msummary(table_list)
 
@@ -165,9 +165,9 @@ huxreg(logit)
 
 logit$coefficients
 
-fitted_values <- predict(logit, type = 'link') # 推定したモデルでの予測値(X_i \beta)
+fitted_values <- predict(logit, type = 'response') # 推定したモデルでの予測値(X_i \beta)
 
-avgPred <- mean(exp(fitted_values) / (1 - exp(fitted_values)))
+avgPred <- mean(fitted_values)
 AME <- avgPred * coef(logit)
 AME
 

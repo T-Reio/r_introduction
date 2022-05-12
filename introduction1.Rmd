@@ -3,7 +3,7 @@ title: "An Introduction to R"
 author:
 - Reio Tanji
 - Osaka Univ., Graduate School of Econ.
-date: "April, 2022"
+date: "April and May, 2022"
 output:
   pdf_document: 
     latex_engine: lualatex
@@ -1301,16 +1301,6 @@ data("CollegeDistance")
 print(head(CollegeDistance))
 ```
 
-## 課題(佐々木ゼミ向け)
-
-- AERパッケージから好きなデータセットを使い
-  - 分析課題の設定：各データセットに元論文があるので、その研究テーマを使ってもOK
-  - データセットの要約：要約統計量、必要ならグループごとに分けたものを作成し、まとめておく
-  - なんでもいいので新しい変数を作ってみる
-  - データの可視化：分析課題を検証するにあたって必要そうな可視化を行う
-  - できたものをスクリプトと共にSlackに投げて下さい。ぼくがチェックしても仕方ないので、皆さんで再現性があるか確認するといいと思います
-- これを踏まえて、来週回帰分析などの分析手法を紹介します
-
 ## 分析に必要なパッケージ
 
 - estimatrパッケージ：OLS、固定効果、操作変数法など、様々な計量経済分析を行うことができる
@@ -1339,6 +1329,7 @@ print(head(CollegeDistance))
 ## huxtableパッケージ
 
 - htmlをはじめとした様々な表出力に対応
+- データフレームも出力できるので、記述統計量の出力にも使える
 
 ```{r, warning=FALSE}
 CollegeDistance <- CollegeDistance %>%
@@ -1366,7 +1357,7 @@ table %>%
 ## 出力の保存
 
 - huxtable, huxregで作った表は、`quick_(ファイル形式)`関数で保存することができる
-- ファイル名
+- ファイルを保存したら、
 
 
 ## modelsummaryパッケージ (要出典)
