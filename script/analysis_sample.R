@@ -120,6 +120,8 @@ table
 
 #quick_pptx(table, file = "tab/college_regression.pptx") # quick_〇〇関数で保存
 
+quick_xlsx(table, file = "tab/college_regression.xlsx")
+
 
 ## modelsummary
 

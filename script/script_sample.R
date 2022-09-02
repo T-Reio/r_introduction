@@ -8,6 +8,7 @@
 #でコメントアウトできる：実行しても無視されるので、メモ書きに使える
 
 library(tidyverse)
+library(palmerpenguins)
 
 # ここに項目名を書いて -----か####を打つと折りたたみできる -----------------
 
@@ -135,12 +136,12 @@ summary(penguin_df)
 palmerpenguins::penguins %>%
   summary()
 
-penguin_df %>%
+penguins %>%
   dplyr::rename(weight = body_mass_g)
 
 newnames <- c("species", "island", "bill_lg", "bill_dep", "flipper", "weight", "sex", "yr")
 
-penguin_df %>%
+penguins %>%
   purrr::set_names(newnames)
 
 gentoo <- palmerpenguins::penguins %>%
